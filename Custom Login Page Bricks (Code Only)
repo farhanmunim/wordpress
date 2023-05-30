@@ -1,0 +1,31 @@
+<---Ensure a page called Login is created with the Bricks Form Element for User Registration--->
+<----New plugin---->
+
+<?php
+/*
+Plugin Name: My custom login page.
+Description: My custom login page.
+Version: 1.0.0
+Author: Farhan Munim
+Author URI: https://farhan.app/
+*/
+
+function redirect_wp_login() {
+    // Check if the user is trying to access the default login URL
+    if ( ! is_user_logged_in() && strpos( $_SERVER['REQUEST_URI'], '/wp-login.php' ) !== false ) {
+        // Redirect to your custom login page
+        wp_redirect( home_url( '/login' ) );
+        exit;
+    }
+}
+add_action( 'init', 'redirect_wp_login' );
+
+// Logout redirect
+add_action('wp_logout','auto_redirect_after_logout');
+
+function auto_redirect_after_logout(){
+  wp_safe_redirect( home_url() );
+  exit;
+}
+
+
