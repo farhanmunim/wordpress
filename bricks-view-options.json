@@ -1,0 +1,114 @@
+{
+  "content": [
+    {
+      "id": "rexjqd",
+      "name": "div",
+      "parent": 0,
+      "children": ["caufes", "aywhfn"],
+      "settings": {}
+    },
+    {
+      "id": "caufes",
+      "name": "code",
+      "parent": "rexjqd",
+      "children": [],
+      "settings": {
+        "code": "    <input type=\"radio\" id=\"list\" name=\"view_mode\" value=\"list\" checked>\n    <label for=\"list\">\n        <svg width=\"20\" height=\"17\" viewBox=\"0 0 20 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10.008 3.59016H19.3413V4.92349H10.008V3.59016ZM10.008 12.9235H19.3413V14.2568H10.008V12.9235ZM6.00802 7.59016H2.00802C1.6545 7.58981 1.31557 7.44922 1.0656 7.19925C0.815625 6.94927 0.675036 6.61034 0.674683 6.25683V2.25683C0.675036 1.90331 0.815625 1.56438 1.0656 1.31441C1.31557 1.06443 1.6545 0.923845 2.00802 0.923492H6.00802C6.36153 0.923845 6.70046 1.06443 6.95043 1.31441C7.20041 1.56438 7.341 1.90331 7.34135 2.25683V6.25683C7.341 6.61034 7.20041 6.94927 6.95043 7.19925C6.70046 7.44922 6.36153 7.58981 6.00802 7.59016ZM2.00802 2.25683V6.25683H6.00868L6.00802 2.25683H2.00802ZM6.00802 16.9235H2.00802C1.6545 16.9231 1.31557 16.7826 1.0656 16.5326C0.815625 16.2826 0.675036 15.9437 0.674683 15.5902V11.5902C0.675036 11.2366 0.815625 10.8977 1.0656 10.6477C1.31557 10.3978 1.6545 10.2572 2.00802 10.2568H6.00802C6.36153 10.2572 6.70046 10.3978 6.95043 10.6477C7.20041 10.8977 7.341 11.2366 7.34135 11.5902V15.5902C7.341 15.9437 7.20041 16.2826 6.95043 16.5326C6.70046 16.7826 6.36153 16.9231 6.00802 16.9235ZM2.00802 11.5902V15.5902H6.00868L6.00802 11.5902H2.00802Z\" fill=\"inherit\"/>\n</svg>\n\n    </label>\n    <input type=\"radio\" id=\"grid\" name=\"view_mode\" value=\"grid\">\n    <label for=\"grid\">\n        <svg width=\"17\" height=\"17\" viewBox=\"0 0 17 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.51812 0.923492H1.51812C1.1645 0.923492 0.825357 1.06397 0.575308 1.31402C0.32526 1.56407 0.184784 1.9032 0.184784 2.25683V6.25683C0.184784 6.61045 0.32526 6.94959 0.575308 7.19963C0.825357 7.44968 1.1645 7.59016 1.51812 7.59016H5.51812C5.87174 7.59016 6.21088 7.44968 6.46093 7.19963C6.71097 6.94959 6.85145 6.61045 6.85145 6.25683V2.25683C6.85145 1.9032 6.71097 1.56407 6.46093 1.31402C6.21088 1.06397 5.87174 0.923492 5.51812 0.923492ZM5.51812 6.25683H1.51812V2.25683H5.51812V6.25683ZM14.8515 0.923492H10.8515C10.4978 0.923492 10.1587 1.06397 9.90864 1.31402C9.65859 1.56407 9.51812 1.9032 9.51812 2.25683V6.25683C9.51812 6.61045 9.65859 6.94959 9.90864 7.19963C10.1587 7.44968 10.4978 7.59016 10.8515 7.59016H14.8515C15.2051 7.59016 15.5442 7.44968 15.7943 7.19963C16.0443 6.94959 16.1848 6.61045 16.1848 6.25683V2.25683C16.1848 1.9032 16.0443 1.56407 15.7943 1.31402C15.5442 1.06397 15.2051 0.923492 14.8515 0.923492ZM14.8515 6.25683H10.8515V2.25683H14.8515V6.25683ZM5.51812 10.2568H1.51812C1.1645 10.2568 0.825357 10.3973 0.575308 10.6474C0.32526 10.8974 0.184784 11.2365 0.184784 11.5902V15.5902C0.184784 15.9438 0.32526 16.2829 0.575308 16.533C0.825357 16.783 1.1645 16.9235 1.51812 16.9235H5.51812C5.87174 16.9235 6.21088 16.783 6.46093 16.533C6.71097 16.2829 6.85145 15.9438 6.85145 15.5902V11.5902C6.85145 11.2365 6.71097 10.8974 6.46093 10.6474C6.21088 10.3973 5.87174 10.2568 5.51812 10.2568ZM5.51812 15.5902H1.51812V11.5902H5.51812V15.5902ZM14.8515 10.2568H10.8515C10.4978 10.2568 10.1587 10.3973 9.90864 10.6474C9.65859 10.8974 9.51812 11.2365 9.51812 11.5902V15.5902C9.51812 15.9438 9.65859 16.2829 9.90864 16.533C10.1587 16.783 10.4978 16.9235 10.8515 16.9235H14.8515C15.2051 16.9235 15.5442 16.783 15.7943 16.533C16.0443 16.2829 16.1848 15.9438 16.1848 15.5902V11.5902C16.1848 11.2365 16.0443 10.8974 15.7943 10.6474C15.5442 10.3973 15.2051 10.2568 14.8515 10.2568ZM14.8515 15.5902H10.8515V11.5902H14.8515V15.5902Z\" fill=\"inherit\"/>\n</svg>\n\n    </label>\n\n<style>/* Hiding the default radio button */\ninput[type=\"radio\"] {\n  display: none;\n}\n/* Custom styles for displaying the labels as images */\nlabel {\n  cursor: pointer;\n}\n/* Setting initial fill color to black or any default */\nlabel svg {\n  fill: black; /* Default color of SVG */\n}\n/* Styles for checked state using adjacent sibling combinator */\ninput[type=\"radio\"]:checked + label svg {\n  fill: blue; /* Change color to red on select */\n}\n\n/* Styles when the 'list' view is selected */\n.view-options input[type=\"radio\"][value=\"list\"]:checked ~ .content {\n  display: flex;\n  flex-direction: row;\n  gap: 4rem;\n}\n\n/* Styles when the 'grid' view is selected */\n.view-options:has(input[type=\"radio\"][value=\"grid\"]:checked) + .content {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));\n  gap: 4rem;\n}\n</style>",
+        "executeCode": true,
+        "signature": "e5371b99295c06e9f1d93d6392db1131",
+        "user_id": 1,
+        "time": 1714051720,
+        "_cssGlobalClasses": ["kqagzh"]
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "aywhfn",
+      "name": "div",
+      "parent": "rexjqd",
+      "children": ["bmestw", "okhane", "xkeezx", "dzhhim"],
+      "settings": { "_cssGlobalClasses": ["smozfi"] }
+    },
+    {
+      "id": "bmestw",
+      "name": "div",
+      "parent": "aywhfn",
+      "children": ["xbztyb"],
+      "settings": { "_cssGlobalClasses": ["vasoye"] }
+    },
+    {
+      "id": "xbztyb",
+      "name": "heading",
+      "parent": "bmestw",
+      "children": [],
+      "settings": { "tag": "h3", "text": "Content item #1" }
+    },
+    {
+      "id": "okhane",
+      "name": "div",
+      "parent": "aywhfn",
+      "children": ["tiiqan"],
+      "settings": { "_cssGlobalClasses": ["vasoye"] }
+    },
+    {
+      "id": "tiiqan",
+      "name": "heading",
+      "parent": "okhane",
+      "children": [],
+      "settings": { "tag": "h3", "text": "Content item #2" }
+    },
+    {
+      "id": "xkeezx",
+      "name": "div",
+      "parent": "aywhfn",
+      "children": ["dxakic"],
+      "settings": { "_cssGlobalClasses": ["vasoye"] }
+    },
+    {
+      "id": "dxakic",
+      "name": "heading",
+      "parent": "xkeezx",
+      "children": [],
+      "settings": { "tag": "h3", "text": "Content item #3" }
+    },
+    {
+      "id": "dzhhim",
+      "name": "div",
+      "parent": "aywhfn",
+      "children": ["qnoglo"],
+      "settings": { "_cssGlobalClasses": ["vasoye"] }
+    },
+    {
+      "id": "qnoglo",
+      "name": "heading",
+      "parent": "dzhhim",
+      "children": [],
+      "settings": { "tag": "h3", "text": "Content item #4" }
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "sourceUrl": "https://farhan.local",
+  "version": "1.9.7.1",
+  "globalClasses": [
+    {
+      "id": "kqagzh",
+      "name": "view-options",
+      "settings": { "_display": "flex", "_gap": "2rem" }
+    },
+    { "id": "smozfi", "name": "content", "settings": [] },
+    {
+      "id": "vasoye",
+      "name": "content__card",
+      "settings": {
+        "_padding": {
+          "top": "2rem",
+          "right": "2rem",
+          "bottom": "2rem",
+          "left": "2rem"
+        },
+        "_background": { "color": { "raw": "var(--clr-ntrl-300)" } }
+      }
+    }
+  ],
+  "globalElements": []
+}
