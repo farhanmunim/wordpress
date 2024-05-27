@@ -1,0 +1,243 @@
+{
+  "content": [
+    {
+      "id": "nqeyig",
+      "name": "div",
+      "parent": "ioebpt",
+      "children": ["wsttpy", "lztzqr", "xuadmr", "doaust"],
+      "settings": { "_cssGlobalClasses": ["mcnoef"] },
+      "label": "Layout Toggle Component"
+    },
+    {
+      "id": "wsttpy",
+      "name": "code",
+      "parent": "nqeyig",
+      "children": [],
+      "settings": {
+        "code": "<style>\n.layout-toggle__icon{\n  opacity: 0.55;\n}\n  \n.layout-toggle__input:checked ~ svg, .layout-toggle__input:hover ~ svg{\n  opacity: 1;\n}\n\n/* Styles when the 'grid' view is selected */\n.layout-toggle:has(input[type=\"radio\"][id=\"grid\"]:checked) + .layout-toggle__content {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));\n  gap: 2rem;\n  /*animation: filter-grid 500ms forwards;*/\n}\n  \n.layout-toggle:has(input[type=\"radio\"][id=\"list\"]:checked) + .layout-toggle__content {\n  display: flex;\n  flex-direction: column;\n  gap: 2rem;\n  /*animation: filter-list 500ms forwards;*/\n}\n  \n.layout-toggle:has(input[type=\"radio\"][id=\"grid\"]:checked) + .layout-toggle__content .layout-toggle__card {\n  min-height: 12rem;\n  display: grid;\n  place-items: center;\n}  \n  \n  @keyframes filter-list{\n    0% {opacity: 0;}\n    100% {opacity: 1;}\n  }\n  \n  @keyframes filter-grid{\n    0% {opacity: 0;}\n    100% {opacity: 1;}\n  }\n  \n  .layout-toggle__content h3 a:focus{\n    outline: unset;\n  }\n</style>\n",
+        "executeCode": true,
+        "noRoot": true,
+        "signature": "f722660e3b4cbd492167d35c0a61937e",
+        "user_id": 1,
+        "time": 1715884748
+      }
+    },
+    {
+      "id": "lztzqr",
+      "name": "div",
+      "parent": "nqeyig",
+      "children": ["zfqmpb", "xvuhit"],
+      "settings": { "tag": "custom", "customTag": "fieldset", "_cssGlobalClasses": ["mgcqnl"] },
+      "label": "Layout Toggle"
+    },
+    {
+      "id": "zfqmpb",
+      "name": "div",
+      "parent": "lztzqr",
+      "children": ["fstssl", "nvyiax"],
+      "settings": { "tag": "custom", "customTag": "label", "_cssGlobalClasses": ["vwvsii"] },
+      "label": "Label"
+    },
+    {
+      "id": "fstssl",
+      "name": "div",
+      "parent": "zfqmpb",
+      "children": [],
+      "settings": {
+        "tag": "custom",
+        "customTag": "input",
+        "_cssGlobalClasses": ["lczglo"],
+        "_attributes": [
+          { "id": "uviain", "name": "type", "value": "radio" },
+          { "id": "emkpcn", "name": "name", "value": "toggle-layout" },
+          { "id": "ippspi", "name": "id", "value": "list" },
+          { "id": "rtalxq", "name": "checked" }
+        ]
+      },
+      "label": "Radio Button"
+    },
+    {
+      "id": "nvyiax",
+      "name": "svg",
+      "parent": "zfqmpb",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": ["jcwddj"],
+        "file": {
+          "id": 303,
+          "filename": "list.svg",
+          "url": "https://blueprint.local/wp-content/uploads/list.svg"
+        }
+      },
+      "label": "Icon"
+    },
+    {
+      "id": "xvuhit",
+      "name": "div",
+      "parent": "lztzqr",
+      "children": ["awgepo", "bekgen"],
+      "settings": { "tag": "custom", "customTag": "label", "_cssGlobalClasses": ["vwvsii"] },
+      "label": "Label"
+    },
+    {
+      "id": "awgepo",
+      "name": "div",
+      "parent": "xvuhit",
+      "children": [],
+      "settings": {
+        "tag": "custom",
+        "customTag": "input",
+        "_cssGlobalClasses": ["lczglo"],
+        "_attributes": [
+          { "id": "uviain", "name": "type", "value": "radio" },
+          { "id": "emkpcn", "name": "name", "value": "toggle-layout" },
+          { "id": "ippspi", "name": "id", "value": "grid" }
+        ]
+      },
+      "label": "Radio Button"
+    },
+    {
+      "id": "bekgen",
+      "name": "svg",
+      "parent": "xvuhit",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": ["jcwddj"],
+        "file": {
+          "id": 302,
+          "filename": "grid.svg",
+          "url": "https://blueprint.local/wp-content/uploads/grid.svg"
+        }
+      },
+      "label": "Icon"
+    },
+    {
+      "id": "xuadmr",
+      "name": "div",
+      "parent": "nqeyig",
+      "children": ["ykhueq"],
+      "settings": { "_cssGlobalClasses": ["dtsqzb"], "tag": "ul" },
+      "label": "Content"
+    },
+    {
+      "id": "ykhueq",
+      "name": "div",
+      "parent": "xuadmr",
+      "children": ["whngwx"],
+      "settings": {
+        "hasLoop": true,
+        "query": { "objectType": "post", "posts_per_page": "6" },
+        "_cssGlobalClasses": ["hyfmeg"],
+        "tag": "li"
+      },
+      "label": "Card"
+    },
+    {
+      "id": "whngwx",
+      "name": "div",
+      "parent": "ykhueq",
+      "children": ["ozibih"],
+      "settings": { "tag": "article" },
+      "label": "Article"
+    },
+    {
+      "id": "ozibih",
+      "name": "heading",
+      "parent": "whngwx",
+      "children": [],
+      "settings": {
+        "text": "{post_title}",
+        "_cssGlobalClasses": ["ukxisy"],
+        "tag": "h3",
+        "link": { "type": "meta", "useDynamicData": "{post_url}" }
+      }
+    },
+    {
+      "id": "doaust",
+      "name": "pagination",
+      "parent": "nqeyig",
+      "children": [],
+      "settings": { "_cssGlobalClasses": ["xtpoln"], "queryId": "ykhueq", "ajax": true },
+      "label": "Pagination"
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "sourceUrl": "https://blueprint.local",
+  "version": "1.9.8",
+  "globalClasses": [
+    {
+      "id": "mcnoef",
+      "name": "layout-toggle__wrapper",
+      "settings": {
+        "_width": "100%",
+        "_display": "flex",
+        "_direction": "column",
+        "_rowGap": "4rem"
+      }
+    },
+    {
+      "id": "mgcqnl",
+      "name": "layout-toggle",
+      "settings": {
+        "_display": "flex",
+        "_alignSelf": "flex-end",
+        "_alignItems": "center",
+        "_columnGap": "4rem",
+        "_margin": { "left": "unset", "right": "unset" },
+        "_padding": { "top": "unset", "right": "unset", "bottom": "unset", "left": "unset" },
+        "_border": { "width": { "top": "0", "right": "0", "bottom": "0", "left": "0" } },
+        "_justifyContent": "center"
+      }
+    },
+    {
+      "id": "vwvsii",
+      "name": "layout-toggle__label",
+      "settings": {
+        "_margin": { "bottom": "unset" },
+        "_typography": { "line-height": "1" },
+        "_cursor": "pointer"
+      }
+    },
+    { "id": "lczglo", "name": "layout-toggle__input", "settings": { "_display": "none" } },
+    { "id": "jcwddj", "name": "layout-toggle__icon", "settings": [] },
+    {
+      "id": "dtsqzb",
+      "name": "layout-toggle__content",
+      "settings": {
+        "_display": "flex",
+        "_direction": "column",
+        "_rowGap": "2rem",
+        "_margin": { "top": "unset", "bottom": "unset" },
+        "_padding": { "left": "unset" }
+      }
+    },
+    {
+      "id": "hyfmeg",
+      "name": "layout-toggle__card",
+      "settings": {
+        "_background": { "color": { "raw": "#EAEAEA" } },
+        "_typography": { "font-size": "1.4rem" },
+        "_padding": { "top": "0.8rem", "bottom": "0.8rem", "right": "1.6rem", "left": "1.6rem" },
+        "_border": {
+          "radius": { "top": "0.8rem", "right": "0.8rem", "bottom": "0.8rem", "left": "0.8rem" }
+        },
+        "_cssCustom": ".layout-toggle__card{\n  list-style: none;\n}\n\n.layout-toggle__card > a:focus{\n  outline: unset;\n}\n\n.layout-toggle__card:focus-within{\n  outline: thin dotted currentcolor;\n}\n\n.layout-toggle__card a::after{\n  content:'';\n  position: absolute;\n  inset: 0;\n}",
+        "_position": "relative"
+      }
+    },
+    {
+      "id": "ukxisy",
+      "name": "layout-toggle__heading",
+      "settings": { "_typography": { "font-weight": "500", "font-size": "1.4rem" } }
+    },
+    {
+      "id": "xtpoln",
+      "name": "layout-toggle__pagination",
+      "settings": {
+        "navigationTypography": { "color": { "raw": "#000" } },
+        "navigationTypographyActive": { "color": { "raw": "#000" } }
+      }
+    }
+  ],
+  "globalElements": []
+}
