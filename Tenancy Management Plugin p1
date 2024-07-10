@@ -1,0 +1,1722 @@
+add_action( 'acf/include_fields', function() {
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		return;
+	}
+
+	acf_add_local_field_group( array(
+	'key' => 'group_66885fee1975f',
+	'title' => 'Property Details',
+	'fields' => array(
+		array(
+			'key' => 'field_6688603b0144f',
+			'label' => 'Basic Information',
+			'name' => '',
+			'aria-label' => '',
+			'type' => 'tab',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'placement' => 'top',
+			'endpoint' => 0,
+			'selected' => 0,
+		),
+		array(
+			'key' => 'field_668869bfcdf2b',
+			'label' => 'Address',
+			'name' => 'address',
+			'aria-label' => '',
+			'type' => 'textarea',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'rows' => '',
+			'placeholder' => '',
+			'new_lines' => '',
+		),
+		array(
+			'key' => 'field_6689d81d06eba',
+			'label' => 'Rent (PCM)',
+			'name' => 'rent_pcm',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6689d83906ebb',
+			'label' => 'Deposit',
+			'name' => 'deposit',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6689d7fb06eb9',
+			'label' => 'Council Tax Band',
+			'name' => 'council_tax_band',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_66886244b33a2',
+			'label' => 'Thumbnail',
+			'name' => 'thumbnail',
+			'aria-label' => '',
+			'type' => 'image',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_width' => '',
+			'min_height' => '',
+			'min_size' => '',
+			'max_width' => '',
+			'max_height' => '',
+			'max_size' => '',
+			'mime_types' => '',
+			'preview_size' => 'medium',
+		),
+		array(
+			'key' => 'field_6689d6e1dd15a',
+			'label' => 'Floorplan',
+			'name' => 'floorplan',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_6689d7bc06eb8',
+			'label' => 'Nearby Station',
+			'name' => 'nearby_station',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6689d7b406eb7',
+			'label' => 'Nearby School',
+			'name' => 'nearby_school',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_66885fea01449',
+			'label' => 'Bedrooms',
+			'name' => 'bedrooms',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668860000144a',
+			'label' => 'Kitchen',
+			'name' => 'kitchen',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688600c0144b',
+			'label' => 'Bathroom',
+			'name' => 'bathroom',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668860130144c',
+			'label' => 'WC',
+			'name' => 'wc',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688601b0144d',
+			'label' => 'Living Room',
+			'name' => 'living_room',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668860230144e',
+			'label' => 'Garden',
+			'name' => 'garden',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_66886177011d2',
+			'label' => 'Parking',
+			'name' => 'parking',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688618b011d3',
+			'label' => 'Other',
+			'name' => 'other',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688605301450',
+			'label' => 'Tenants',
+			'name' => '',
+			'aria-label' => '',
+			'type' => 'tab',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'placement' => 'top',
+			'endpoint' => 0,
+			'selected' => 0,
+		),
+		array(
+			'key' => 'field_6688607e01453',
+			'label' => 'Tenant 1 Name',
+			'name' => 'tenant_1_name',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668860a501457',
+			'label' => 'Tenant 1 Email',
+			'name' => 'tenant_1_email',
+			'aria-label' => '',
+			'type' => 'email',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688606901452',
+			'label' => 'Tenant 1 Phone',
+			'name' => 'tenant_1_phone',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668862d73e762',
+			'label' => 'Tenant 1 AML',
+			'name' => 'tenant_1_aml',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_6688608901454',
+			'label' => 'Tenant 2 Name',
+			'name' => 'tenant_2_name',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688609201455',
+			'label' => 'Tenant 2 Phone',
+			'name' => 'tenant_2_phone',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688609c01456',
+			'label' => 'Tenant 2 Email',
+			'name' => 'tenant_2_email',
+			'aria-label' => '',
+			'type' => 'email',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668863233e763',
+			'label' => 'Tenant 2 AML',
+			'name' => 'tenant_2_aml',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_668860c101458',
+			'label' => 'Tenant 3 Name',
+			'name' => 'tenant_3_name',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668860d00145a',
+			'label' => 'Tenant 3 Email',
+			'name' => 'tenant_3_email',
+			'aria-label' => '',
+			'type' => 'email',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668860c901459',
+			'label' => 'Tenant 3 Number',
+			'name' => 'tenant_3_number',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688632f3e764',
+			'label' => 'Tenant 3 AML',
+			'name' => 'tenant_3_aml',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_668866e079d8f',
+			'label' => 'Guarantors',
+			'name' => '',
+			'aria-label' => '',
+			'type' => 'tab',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'placement' => 'top',
+			'endpoint' => 0,
+			'selected' => 0,
+		),
+		array(
+			'key' => 'field_668865ee67afe',
+			'label' => 'Guarantor 1 Name',
+			'name' => 'guarantor_1_name',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688661a67b03',
+			'label' => 'Guarantor 1 Email',
+			'name' => 'guarantor_1_email',
+			'aria-label' => '',
+			'type' => 'email',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688669779d8b',
+			'label' => 'Guarantor 1 Number',
+			'name' => 'guarantor_1_number',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668866bc79d8c',
+			'label' => 'Guarantor 1 AML',
+			'name' => 'guarantor_1_aml',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_668865fc67aff',
+			'label' => 'Guarantor 2 Name',
+			'name' => 'guarantor_2_name',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688662567b04',
+			'label' => 'Guarantor 2 Email',
+			'name' => 'guarantor_2_email',
+			'aria-label' => '',
+			'type' => 'email',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688660967b01',
+			'label' => 'Guarantor 2 Number',
+			'name' => 'guarantor_2_number',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668866ca79d8d',
+			'label' => 'Guarantor 2 AML',
+			'name' => 'guarantor_2_aml',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_6688660367b00',
+			'label' => 'Guarantor 3 Name',
+			'name' => 'guarantor_3_name',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688662b67b05',
+			'label' => 'Guarantor 3 Email',
+			'name' => 'guarantor_3_email',
+			'aria-label' => '',
+			'type' => 'email',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6688661367b02',
+			'label' => 'Guarantor 3 Number',
+			'name' => 'guarantor_3_number',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668866d579d8e',
+			'label' => 'Guarantor 3 AML',
+			'name' => 'guarantor_3_aml',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_668860e20145b',
+			'label' => 'Compliance',
+			'name' => '',
+			'aria-label' => '',
+			'type' => 'tab',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'placement' => 'top',
+			'endpoint' => 0,
+			'selected' => 0,
+		),
+		array(
+			'key' => 'field_668861070145d',
+			'label' => 'Gas Certificate',
+			'name' => 'gas_certificate',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_66886816f7800',
+			'label' => 'Gas Certificate Expiry',
+			'name' => 'gas_certificate_expiry',
+			'aria-label' => '',
+			'type' => 'date_picker',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'display_format' => 'd/m/Y',
+			'return_format' => 'd/m/Y',
+			'first_day' => 1,
+		),
+		array(
+			'key' => 'field_668861e5e5e19',
+			'label' => 'PAT Certificate',
+			'name' => 'pat_certificate',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_668861cfe5e18',
+			'label' => 'AST',
+			'name' => 'ast',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_6688683bf7801',
+			'label' => 'AST Expiry',
+			'name' => 'ast_expiry',
+			'aria-label' => '',
+			'type' => 'date_picker',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'display_format' => 'd/m/Y',
+			'return_format' => 'd/m/Y',
+			'first_day' => 1,
+		),
+		array(
+			'key' => 'field_6689d956d588f',
+			'label' => 'Deposit Protection Scheme',
+			'name' => 'deposit_protection_scheme',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668860ea0145c',
+			'label' => 'Deposit Protection Certificate',
+			'name' => 'deposit_protection_certificate',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_6688684af7802',
+			'label' => 'Deposit Protection Certificate Expiry',
+			'name' => 'deposit_protection_certificate_expiry',
+			'aria-label' => '',
+			'type' => 'date_picker',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'display_format' => 'd/m/Y',
+			'return_format' => 'd/m/Y',
+			'first_day' => 1,
+		),
+		array(
+			'key' => 'field_6688611d0145f',
+			'label' => 'EPC',
+			'name' => 'epc',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_6688685ff7803',
+			'label' => 'EPC Expiry',
+			'name' => 'epc_expiry',
+			'aria-label' => '',
+			'type' => 'date_picker',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'display_format' => 'd/m/Y',
+			'return_format' => 'd/m/Y',
+			'first_day' => 1,
+		),
+		array(
+			'key' => 'field_668861110145e',
+			'label' => 'EICR',
+			'name' => 'eicr',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_66886877f7804',
+			'label' => 'EICR Expiry',
+			'name' => 'eicr_expiry',
+			'aria-label' => '',
+			'type' => 'date_picker',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'display_format' => 'd/m/Y',
+			'return_format' => 'd/m/Y',
+			'first_day' => 1,
+		),
+		array(
+			'key' => 'field_668861f9e5e1a',
+			'label' => 'Smoke and Fire Detection Certificate',
+			'name' => 'smoke_and_fire_detection_certificate',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_66886212e5e1b',
+			'label' => 'Emergency Lights Installation Certificate',
+			'name' => 'emergency_lights_installation_certificate',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_6688612801460',
+			'label' => 'Local Authority License',
+			'name' => 'local_authority_license',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_66886892f7805',
+			'label' => 'Local Authority License Expiry',
+			'name' => 'local_authority_license_expiry',
+			'aria-label' => '',
+			'type' => 'date_picker',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'display_format' => 'd/m/Y',
+			'return_format' => 'd/m/Y',
+			'first_day' => 1,
+		),
+		array(
+			'key' => 'field_66886288adafb',
+			'label' => 'HMO and Refuse Management',
+			'name' => 'hmo_and_refuse_management',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_668862adb35e5',
+			'label' => 'Fire Assessment',
+			'name' => 'fire_assessment',
+			'aria-label' => '',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+		array(
+			'key' => 'field_668868f32ff71',
+			'label' => 'Cover',
+			'name' => '',
+			'aria-label' => '',
+			'type' => 'tab',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'placement' => 'top',
+			'endpoint' => 0,
+			'selected' => 0,
+		),
+		array(
+			'key' => 'field_668869222ff72',
+			'label' => 'Cover 1 / Ref',
+			'name' => 'cover_1',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668869302ff73',
+			'label' => 'Cover 2 / Ref',
+			'name' => 'cover_2',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_668869372ff74',
+			'label' => 'Cover 3 / Ref',
+			'name' => 'cover_3',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'property',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+	'show_in_rest' => 0,
+) );
+
+	acf_add_local_field_group( array(
+	'key' => 'group_6689d1923d867',
+	'title' => 'Property Settings',
+	'fields' => array(
+		array(
+			'key' => 'field_6689d192b2923',
+			'label' => 'Email',
+			'name' => 'property_management_email',
+			'aria-label' => '',
+			'type' => 'email',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'options_page',
+				'operator' => '==',
+				'value' => 'property-settings',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+	'show_in_rest' => 0,
+) );
+} );
+
+add_action( 'init', function() {
+	register_post_type( 'property', array(
+	'labels' => array(
+		'name' => 'Properties',
+		'singular_name' => 'Property',
+		'menu_name' => 'Properties',
+		'all_items' => 'All Properties',
+		'edit_item' => 'Edit Property',
+		'view_item' => 'View Property',
+		'view_items' => 'View Properties',
+		'add_new_item' => 'Add New Property',
+		'add_new' => 'Add New Property',
+		'new_item' => 'New Property',
+		'parent_item_colon' => 'Parent Property:',
+		'search_items' => 'Search Properties',
+		'not_found' => 'No properties found',
+		'not_found_in_trash' => 'No properties found in the bin',
+		'archives' => 'Property Archives',
+		'attributes' => 'Property Attributes',
+		'insert_into_item' => 'Insert into property',
+		'uploaded_to_this_item' => 'Uploaded to this property',
+		'filter_items_list' => 'Filter properties list',
+		'filter_by_date' => 'Filter properties by date',
+		'items_list_navigation' => 'Properties list navigation',
+		'items_list' => 'Properties list',
+		'item_published' => 'Property published.',
+		'item_published_privately' => 'Property published privately.',
+		'item_reverted_to_draft' => 'Property reverted to draft.',
+		'item_scheduled' => 'Property scheduled.',
+		'item_updated' => 'Property updated.',
+		'item_link' => 'Property Link',
+		'item_link_description' => 'A link to a property.',
+	),
+	'public' => true,
+	'show_in_rest' => true,
+	'menu_icon' => 'dashicons-admin-home',
+	'supports' => array(
+		0 => 'title',
+		1 => 'custom-fields',
+	),
+	'delete_with_user' => false,
+) );
+} );
+
+add_action( 'acf/init', function() {
+	acf_add_options_page( array(
+	'page_title' => 'Property Settings',
+	'menu_slug' => 'property-settings',
+	'parent_slug' => 'edit.php?post_type=property',
+	'position' => 2,
+	'redirect' => false,
+) );
+} );
+
+/////////// Function to send expiring documents email
+function send_expiring_documents_email() {
+    // Get email address from ACF options page
+    $property_management_email = get_field('property_management_email', 'option');
+
+    // Array of custom fields to check for expiry
+    $date_fields = array(
+        'gas_certificate_expiry',
+        'ast_expiry',
+        'deposit_protection_certificate_expiry',
+        'epc_expiry',
+        'eicr_expiry',
+        'local_authority_license_expiry'
+    );
+
+    $expiring_properties = array();
+
+    // Fetch all posts of custom post type 'property'
+    $args = array(
+        'post_type' => 'property',
+        'posts_per_page' => -1, // -1 to fetch all posts
+    );
+
+    $properties_query = new WP_Query($args);
+
+    if ($properties_query->have_posts()) :
+        while ($properties_query->have_posts()) :
+            $properties_query->the_post();
+
+            // Initialize an array to store expiring fields for the current post
+            $expiring_fields = array();
+
+            // Check each date field for expiry
+            foreach ($date_fields as $field) {
+                $expiry_date = get_field($field); // Retrieve the custom field value
+                if ($expiry_date) {
+                    // Parse date in d/m/Y format
+                    $expiry_date_formatted = DateTime::createFromFormat('d/m/Y', $expiry_date);
+                    if ($expiry_date_formatted) {
+                        $current_date = new DateTime(); // Get the current date
+
+                        // Calculate the difference in days between the current date and the expiry date
+                        $diff_in_days = $current_date->diff($expiry_date_formatted)->days;
+
+                        // Check if the expiry date is less than 30 days from now
+                        if ($diff_in_days > 0 && $diff_in_days <= 30) {
+                            // Add the expiring field to the current post's list
+                            $expiring_fields[] = array(
+                                'field' => ucfirst(str_replace('_', ' ', $field)),
+                                'expiry_date' => $expiry_date
+                            );
+                        }
+                    }
+                }
+            }
+
+            // If there are expiring fields for this post, add them to the expiring properties array
+            if (!empty($expiring_fields)) {
+                $expiring_properties[] = array(
+                    'title' => get_the_title(),
+                    'expiring_fields' => $expiring_fields
+                );
+            }
+
+        endwhile;
+        wp_reset_postdata(); // Reset post data to avoid conflicts
+
+        // If there are expiring properties, send an email
+        if (!empty($expiring_properties)) {
+            $to = $property_management_email; // Use dynamic email address
+            $subject = 'Expiring Documents Notification';
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+
+            $message = '<h1>Expiring Documents</h1>';
+            foreach ($expiring_properties as $property) {
+                $message .= '<h2>' . $property['title'] . '</h2>';
+                $message .= '<ul>';
+                foreach ($property['expiring_fields'] as $field) {
+                    $message .= '<li>' . $field['field'] . ': ' . $field['expiry_date'] . ' (expiring soon)</li>';
+                }
+                $message .= '</ul>';
+            }
+
+            // Send the email
+            if (wp_mail($to, $subject, $message, $headers)) {
+                echo 'Email sent successfully.';
+            } else {
+                echo 'Failed to send email.';
+            }
+        } else {
+            echo 'No documents expiring soon.';
+        }
+    else :
+        echo 'No properties found.';
+    endif;
+}
+
+// Add submenu page to Property post type menu
+add_action('admin_menu', 'add_expiring_documents_submenu');
+
+function add_expiring_documents_submenu() {
+    add_submenu_page(
+        'edit.php?post_type=property', // Parent slug
+        'Email Expiring Documents', // Page title
+        'Email Expiring Documents', // Menu title
+        'manage_options', // Capability
+        'email-expiring-documents', // Menu slug
+        'send_expiring_documents_email_callback' // Function callback
+    );
+}
+
+// Callback function to handle submenu page
+function send_expiring_documents_email_callback() {
+    if (current_user_can('manage_options')) {
+        send_expiring_documents_email();
+    } else {
+        wp_die('Unauthorized user');
+    }
+}
+
+
+
+/////////// Function to send expired documents email
+function send_expired_documents_email() {
+    // Get email address from ACF options page
+    $property_management_email = get_field('property_management_email', 'option');
+
+    // Array of custom fields to check for expiry
+    $date_fields = array(
+        'gas_certificate_expiry',
+        'ast_expiry',
+        'deposit_protection_certificate_expiry',
+        'epc_expiry',
+        'eicr_expiry',
+        'local_authority_license_expiry'
+    );
+
+    $expired_properties = array();
+
+    // Fetch all posts of custom post type 'property'
+    $args = array(
+        'post_type' => 'property',
+        'posts_per_page' => -1, // -1 to fetch all posts
+    );
+
+    $properties_query = new WP_Query($args);
+
+    if ($properties_query->have_posts()) :
+        while ($properties_query->have_posts()) :
+            $properties_query->the_post();
+
+            // Initialize an array to store expired fields for the current post
+            $expired_fields = array();
+
+            // Check each date field for expiry
+            foreach ($date_fields as $field) {
+                $expiry_date = get_field($field); // Retrieve the custom field value
+                if ($expiry_date) {
+                    // Parse date in d/m/Y format
+                    $expiry_date_formatted = DateTime::createFromFormat('d/m/Y', $expiry_date);
+                    if ($expiry_date_formatted) {
+                        $current_date = new DateTime(); // Get the current date
+
+                        // Compare the expiry date with the current date
+                        if ($expiry_date_formatted < $current_date) {
+                            // Add the expired field to the current post's list
+                            $expired_fields[] = ucfirst(str_replace('_', ' ', $field)) . ': ' . $expiry_date;
+                        }
+                    }
+                }
+            }
+
+            // If there are expired fields for this post, add them to the expired properties array
+            if (!empty($expired_fields)) {
+                $expired_properties[] = array(
+                    'title' => get_the_title(),
+                    'expired_fields' => $expired_fields
+                );
+            }
+
+        endwhile;
+        wp_reset_postdata(); // Reset post data to avoid conflicts
+
+        // If there are expired properties, send an email
+        if (!empty($expired_properties)) {
+            $to = $property_management_email; // Use dynamic email address
+            $subject = 'Expired Documents Notification';
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+
+            $message = '<h1>Expired Documents</h1>';
+            foreach ($expired_properties as $property) {
+                $message .= '<h2>' . $property['title'] . '</h2>';
+                $message .= '<ul>';
+                foreach ($property['expired_fields'] as $field) {
+                    $message .= '<li>' . $field . ' (expired)</li>';
+                }
+                $message .= '</ul>';
+            }
+
+            // Send the email
+            if (wp_mail($to, $subject, $message, $headers)) {
+                echo 'Email sent successfully.';
+            } else {
+                echo 'Failed to send email.';
+            }
+        } else {
+            echo 'No documents expired.';
+        }
+    else :
+        echo 'No properties found.';
+    endif;
+}
+
+// Add submenu page for sending expired documents to Property post type menu
+add_action('admin_menu', 'add_expired_documents_submenu');
+
+function add_expired_documents_submenu() {
+    add_submenu_page(
+        'edit.php?post_type=property', // Parent slug
+        'Email Expired Documents', // Page title
+        'Email Expired Documents', // Menu title
+        'manage_options', // Capability
+        'email-expired-documents', // Menu slug
+        'send_expired_documents_email_callback' // Function callback
+    );
+}
+
+// Callback function to handle submenu page
+function send_expired_documents_email_callback() {
+    if (current_user_can('manage_options')) {
+        send_expired_documents_email();
+    } else {
+        wp_die('Unauthorized user');
+    }
+}
+
+/////////// Hook into the action that triggers scheduled events in WordPress
+add_action('init', 'setup_documents_cron');
+
+function setup_documents_cron() {
+    // Schedule event to check and send expiring documents email daily
+    if (!wp_next_scheduled('check_and_send_expiring_documents')) {
+        wp_schedule_event(time(), 'daily', 'check_and_send_expiring_documents');
+    }
+
+    // Schedule event to check and send expired documents email daily
+    if (!wp_next_scheduled('check_and_send_expired_documents')) {
+        wp_schedule_event(time(), 'daily', 'check_and_send_expired_documents');
+    }
+
+    // Hook functions to respective cron events
+    add_action('check_and_send_expiring_documents', 'cron_check_and_send_expiring_documents');
+    add_action('check_and_send_expired_documents', 'cron_check_and_send_expired_documents');
+}
+
+// Function to check and send expiring documents email via cron
+function cron_check_and_send_expiring_documents() {
+    if (current_user_can('manage_options')) {
+        send_expiring_documents_email();
+    }
+}
+
+// Function to check and send expired documents email via cron
+function cron_check_and_send_expired_documents() {
+    if (current_user_can('manage_options')) {
+        send_expired_documents_email();
+    }
+}
