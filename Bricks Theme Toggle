@@ -1,0 +1,41 @@
+//JSON
+{"content":[{"id":"rhusfq","name":"button","parent":0,"children":[],"settings":{"text":"<svg viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M7 0H9V2H7V0ZM12.88 1.637L14.294 3.052L12.879 4.465L11.466 3.051L12.88 1.637ZM14 7H16V9H14V7ZM12.95 14.433L11.536 13.02L12.949 11.605L14.364 13.019L12.95 14.433ZM7 14H9V16H7V14ZM2.98 14.364L1.567 12.949L2.981 11.535L4.395 12.95L2.98 14.364ZM0 7H2V9H0V7ZM3.05 1.706L4.463 3.12L3.05 4.535L1.636 3.12L3.05 1.706Z\" fill=\"black\"/> <path d=\"M8 4C5.8 4 4 5.8 4 8C4 10.2 5.8 12 8 12C10.2 12 12 10.2 12 8C12 5.8 10.2 4 8 4Z\" fill=\"black\"/> </svg> <svg viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <rect width=\"16\" height=\"16\" fill=\"transparent\"/> <path d=\"M6.2 2C3.2 2.8 1 5.6 1 8.9C1 12.8 4.2 16 8.1 16C11.4 16 14.1 13.8 15 10.8C9.7 12.2 4.8 7.3 6.2 2Z\" fill=\"black\"/> <path d=\"M12.5 6C12.3342 6 12.1753 5.93415 12.0581 5.81694C11.9408 5.69973 11.875 5.54076 11.875 5.375C11.8745 5.04364 11.7426 4.72601 11.5083 4.4917C11.274 4.25739 10.9564 4.12553 10.625 4.125C10.4592 4.125 10.3003 4.05915 10.1831 3.94194C10.0658 3.82473 10 3.66576 10 3.5C10 3.33424 10.0658 3.17527 10.1831 3.05806C10.3003 2.94085 10.4592 2.875 10.625 2.875C10.9564 2.87447 11.274 2.74261 11.5083 2.5083C11.7426 2.27399 11.8745 1.95636 11.875 1.625C11.875 1.45924 11.9408 1.30027 12.0581 1.18306C12.1753 1.06585 12.3342 1 12.5 1C12.6658 1 12.8247 1.06585 12.9419 1.18306C13.0592 1.30027 13.125 1.45924 13.125 1.625C13.126 2.315 13.685 2.874 14.375 2.875C14.5408 2.875 14.6997 2.94085 14.8169 3.05806C14.9342 3.17527 15 3.33424 15 3.5C15 3.66576 14.9342 3.82473 14.8169 3.94194C14.6997 4.05915 14.5408 4.125 14.375 4.125C13.685 4.126 13.126 4.685 13.125 5.375C13.125 5.54076 13.0592 5.69973 12.9419 5.81694C12.8247 5.93415 12.6658 6 12.5 6Z\" fill=\"black\"/> </svg> <span></span>","style":"primary","_cssGlobalClasses":["klbdck"],"tag":"button","_attributes":[{"id":"zcxgkq","name":"aria-label","value":"Theme toggle selector"}]}}],"source":"bricksCopiedElements","sourceUrl":"https://dev.farhan.app","version":"1.9.9","globalClasses":[{"id":"klbdck","name":"theme-toggle","settings":{"_background":{"color":{"raw":"#d3d3d3"}},"_position":"relative","_justifyContent":"center","_alignItems":"center","_width":"max-content","_padding":{"top":"var(--_space)","right":"var(--_space)","bottom":"var(--_space)","left":"var(--_space)"},"_typography":{"line-height":"1"},"_border":{"radius":{"top":"999px","right":"999px","bottom":"999px","left":"999px"}},"_gap":"var(--_space)"},"modified":1721409189,"user_id":1}],"globalElements":[]}
+//CSS
+.theme-toggle{
+    --_icon-clr: #000;
+    --_icon-size: 2rem;
+    --_toggle-size: calc(var(--_icon-size) + 0.2rem);
+    --_space: calc(var(--_toggle-size) - var(--_icon-size) + 0.3rem);
+
+}
+.theme-toggle path{
+    fill: var(--_icon-clr);
+}
+.theme-toggle svg{
+    width: var(--_icon-size);
+    height: auto;
+}
+.theme-toggle span{
+    width: var(--_toggle-size);
+    aspect-ratio: 1;
+    position: absolute;
+    top: calc((var(--_icon-size) + var(--_space) * 2 - var(--_toggle-size)) / 2);
+    left: calc((var(--_icon-size) + var(--_space) * 2 - var(--_toggle-size)) / 2);
+    border-radius: 999px;
+    background-color: #8c538e;
+    transition: all 170ms ease;
+}
+body.dark .theme-toggle span{
+    transform: translateX(calc(var(--_icon-size) + var(--_space)));
+}
+body.dark .theme-toggle svg:nth-of-type(1){
+    animation: rotateForward 1s 0ms ease forwards;
+}
+body.light .theme-toggle svg:nth-of-type(2){
+    animation: rotateForward 1s 0ms ease forwards;
+}
+@keyframes rotateForward{
+    to{
+        rotate: 360deg;
+    }
+}
