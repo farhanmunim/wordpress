@@ -1,0 +1,55 @@
+:root {
+/* Typography */
+  --unit: 1rem;
+  --min-viewport: 36;
+  --max-viewport: 76.8;
+  --h1-min: 3.2;
+  --h1-max: 4.8;
+  --h2-min: 2.4;
+  --h2-max: 3.2;
+  --h3-min: 1.8;
+  --h3-max: 2.4;
+  --body-min: 1.6;
+  --body-max: 1.6;
+  --viewport-range: calc(var(--max-viewport) - var(--min-viewport));
+ 
+  --fs-h1-font-range: calc(var(--h1-max) - var(--h1-min));
+  --fs-h1-fluid-slope: calc(var(--fs-h1-font-range) / var(--viewport-range));
+  --fs-h1-fluid-neg-offset: calc(-1 * var(--min-viewport) * var(--fs-h1-fluid-slope));
+  --fs-h1-fluid-base: calc(var(--fs-h1-fluid-neg-offset) + var(--h1-min));
+  --fs-h1: clamp(
+    calc(var(--h1-min) * var(--unit)),
+    calc(var(--fs-h1-fluid-base) * var(--unit) + var(--fs-h1-fluid-slope) * 100vw),
+    calc(var(--h1-max) * var(--unit))
+  );
+  
+  --fs-h2-font-range: calc(var(--h2-max) - var(--h2-min));
+  --fs-h2-fluid-slope: calc(var(--fs-h2-font-range) / var(--viewport-range));
+  --fs-h2-fluid-neg-offset: calc(-1 * var(--min-viewport) * var(--fs-h2-fluid-slope));
+  --fs-h2-fluid-base: calc(var(--fs-h2-fluid-neg-offset) + var(--h2-min));
+  --fs-h2: clamp(
+    calc(var(--h2-min) * var(--unit)),
+    calc(var(--fs-h2-fluid-base) * var(--unit) + var(--fs-h2-fluid-slope) * 100vw),
+    calc(var(--h2-max) * var(--unit))
+  );
+  
+  --fs-h3-font-range: calc(var(--h3-max) - var(--h3-min));
+  --fs-h3-fluid-slope: calc(var(--fs-h3-font-range) / var(--viewport-range));
+  --fs-h3-fluid-neg-offset: calc(-1 * var(--min-viewport) * var(--fs-h3-fluid-slope));
+  --fs-h3-fluid-base: calc(var(--fs-h3-fluid-neg-offset) + var(--h3-min));
+  --fs-h3: clamp(
+    calc(var(--h3-min) * var(--unit)),
+    calc(var(--fs-h3-fluid-base) * var(--unit) + var(--fs-h3-fluid-slope) * 100vw),
+    calc(var(--h3-max) * var(--unit))
+  );
+  
+  --fs-body-font-range: calc(var(--body-max) - var(--body-min));
+  --fs-body-fluid-slope: calc(var(--fs-body-font-range) / var(--viewport-range));
+  --fs-body-fluid-neg-offset: calc(-1 * var(--min-viewport) * var(--fs-body-fluid-slope));
+  --fs-body-fluid-base: calc(var(--fs-body-fluid-neg-offset) + var(--body-min));
+  --fs-body: clamp(
+    calc(var(--body-min) * var(--unit)),
+    calc(var(--fs-body-fluid-base) * var(--unit) + var(--fs-body-fluid-slope) * 100vw),
+    calc(var(--body-max) * var(--unit))
+  );
+}
