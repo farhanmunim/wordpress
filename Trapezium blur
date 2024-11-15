@@ -1,0 +1,17 @@
+CSS: 
+
+%root%{
+ width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+%root%::before{
+  content:'';
+  height: 100%;
+  width: 100%;
+  display: block;
+  background: rgba(255, 255, 255, 0.001); /* Semi-transparent background */
+      backdrop-filter: blur(2px); /* Blurring effect */
+  clip-path: polygon(20% 60%, 80% 60%, 100% 100%, 0% 100%);
+}
