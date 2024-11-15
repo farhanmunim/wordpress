@@ -1,0 +1,56 @@
+JSON:
+{"content":[{"id":"zsfvni","name":"div","parent":"kkixch","children":[],"settings":{"tag":"custom","customTag":"button","_cssGlobalClasses":["woovgx"],"_attributes":[{"id":"wxlvij","name":"role","value":"switch"},{"id":"bgmbki","name":"aria-pressed","value":"false"},{"id":"jgncps","name":"aria-label","value":"toggle me"}]},"label":"Toggle"}],"source":"bricksCopiedElements","sourceUrl":"https://dev.farhan.app","version":"1.11.1.1","globalClasses":[{"id":"woovgx","name":"toggle","settings":{"_position":"relative","_cssCustom":".toggle {\n   /* Specify the ball size */\n  --_ball: 1.6rem;\n  --_clr-toggle: #ebebeb;\n  --_clr-toggle--active: #242424;\n  --_clr-ball: #000;\n  --_clr-ball--active: #fff;\n  --_space: calc(var(--_ball) / 4);\n  --_transition-time: 0.25s;\n  \n  height: calc(var(--_ball) + (var(--_space) * 2));\n  width: calc((var(--_ball) * 2) + (var(--_space) * 2));\n  background-color: var(--_clr-toggle);\n  border-radius: 999px;\n  transition: var(--_transition-time);\n  box-shadow: none;\n  position: relative;\n}\n\n.toggle::after {\n  content: '';\n  display: block;\n  position: absolute;\n  top: var(--_space);\n  left: var(--_space);\n  width: var(--_ball);\n  aspect-ratio: 1;\n  background-color: var(--_clr-ball);\n  border-radius: 999px;\n  transition: var(--_transition-time);\n}\n\n.toggle[aria-pressed=\"true\"] {\n  background-color: var(--_clr-toggle--active);\n}\n\n.toggle[aria-pressed=\"true\"]::after {\n  background-color: var(--_clr-ball--active);\n  left: calc(100% - var(--_space));\n  transform: translateX(-100%);\n}\n"},"modified":1731422087,"user_id":1}],"globalElements":[]}
+
+CSS:
+%root% {
+   /* Specify the ball size */
+  --_ball: 1.6rem;
+  --_clr-toggle: #ebebeb;
+  --_clr-toggle--active: #242424;
+  --_clr-ball: #000;
+  --_clr-ball--active: #fff;
+  --_space: calc(var(--_ball) / 4);
+  --_transition-time: 0.25s;
+  
+  height: calc(var(--_ball) + (var(--_space) * 2));
+  width: calc((var(--_ball) * 2) + (var(--_space) * 2));
+  background-color: var(--_clr-toggle);
+  border-radius: 999px;
+  transition: var(--_transition-time);
+  box-shadow: none;
+  position: relative;
+}
+
+%root%::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: var(--_space);
+  left: var(--_space);
+  width: var(--_ball);
+  aspect-ratio: 1;
+  background-color: var(--_clr-ball);
+  border-radius: 999px;
+  transition: var(--_transition-time);
+}
+
+%root%[aria-pressed="true"] {
+  background-color: var(--_clr-toggle--active);
+}
+
+%root%[aria-pressed="true"]::after {
+  background-color: var(--_clr-ball--active);
+  left: calc(100% - var(--_space));
+  transform: translateX(-100%);
+}
+
+
+JS:
+<script>
+const toggleSwitch = document.querySelector('.toggle');
+
+toggleSwitch.addEventListener('click', () => {
+  const isPressed = toggleSwitch.getAttribute('aria-pressed') === 'true';
+  toggleSwitch.setAttribute('aria-pressed', !isPressed);
+});
+</script>
