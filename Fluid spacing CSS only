@@ -1,0 +1,62 @@
+:root {
+	/* Fluid Spacing */
+	--unit: 1rem;
+	--min-viewport: 36;
+	--max-viewport: 76.8;
+	--viewport-range: calc(var(--max-viewport) - var(--min-viewport));
+
+	--gap-xs-min: 0.8;
+	--gap-xs-max: 1.2;
+	--gap-s-min: 1.6;
+	--gap-s-max: 2.4;
+	--gap-m-min: 3.2;
+	--gap-m-max: 4.8;
+	--gap-l-min: 4.8;
+	--gap-l-max: 7.2;
+	--gap-xl-min: 6.4;
+	--gap-xl-max: 9.6;
+
+	--gap-xs-range: calc(var(--gap-xs-max) - var(--gap-xs-min));
+	--gap-xs-slope: calc(var(--gap-xs-range) / var(--viewport-range));
+	--gap-xs-neg-offset: calc(-1 * var(--min-viewport) * var(--gap-xs-slope));
+	--gap-xs-base: calc(var(--gap-xs-neg-offset) + var(--gap-xs-min));
+	--gap-xs: clamp(calc(var(--gap-xs-min) * var(--unit)),
+			calc(var(--gap-xs-base) * var(--unit) + var(--gap-xs-slope) * 100vw),
+			calc(var(--gap-xs-max) * var(--unit)));
+
+	--gap-s-range: calc(var(--gap-s-max) - var(--gap-s-min));
+	--gap-s-slope: calc(var(--gap-s-range) / var(--viewport-range));
+	--gap-s-neg-offset: calc(-1 * var(--min-viewport) * var(--gap-s-slope));
+	--gap-s-base: calc(var(--gap-s-neg-offset) + var(--gap-s-min));
+	--gap-s: clamp(calc(var(--gap-s-min) * var(--unit)),
+			calc(var(--gap-s-base) * var(--unit) + var(--gap-s-slope) * 100vw),
+			calc(var(--gap-s-max) * var(--unit)));
+
+	--gap-m-range: calc(var(--gap-m-max) - var(--gap-m-min));
+	--gap-m-slope: calc(var(--gap-m-range) / var(--viewport-range));
+	--gap-m-neg-offset: calc(-1 * var(--min-viewport) * var(--gap-m-slope));
+	--gap-m-base: calc(var(--gap-m-neg-offset) + var(--gap-m-min));
+	--gap-m: clamp(calc(var(--gap-m-min) * var(--unit)),
+			calc(var(--gap-m-base) * var(--unit) + var(--gap-m-slope) * 100vw),
+			calc(var(--gap-m-max) * var(--unit)));
+
+	--gap-l-range: calc(var(--gap-l-max) - var(--gap-l-min));
+	--gap-l-slope: calc(var(--gap-l-range) / var(--viewport-range));
+	--gap-l-neg-offset: calc(-1 * var(--min-viewport) * var(--gap-l-slope));
+	--gap-l-base: calc(var(--gap-l-neg-offset) + var(--gap-l-min));
+	--gap-l: clamp(calc(var(--gap-l-min) * var(--unit)),
+			calc(var(--gap-l-base) * var(--unit) + var(--gap-l-slope) * 100vw),
+			calc(var(--gap-l-max) * var(--unit)));
+
+	--gap-xl-range: calc(var(--gap-xl-max) - var(--gap-xl-min));
+	--gap-xl-slope: calc(var(--gap-xl-range) / var(--viewport-range));
+	--gap-xl-neg-offset: calc(-1 * var(--min-viewport) * var(--gap-xl-slope));
+	--gap-xl-base: calc(var(--gap-xl-neg-offset) + var(--gap-xl-min));
+	--gap-xl: clamp(calc(var(--gap-xl-min) * var(--unit)),
+			calc(var(--gap-xl-base) * var(--unit) + var(--gap-xl-slope) * 100vw),
+			calc(var(--gap-xl-max) * var(--unit)));
+	
+	--gap-section: var(--gap-m);
+	--gap-container: var(--gap-s);
+
+}
