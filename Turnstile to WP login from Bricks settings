@@ -1,0 +1,100 @@
+<?php 
+// Turnstile
+// Function to get Cloudflare Turnstile keys from the database
+function get_cloudflare_turnstile_keys() {
+    global $wpdb;
+
+    // Fetch the serialized data
+    $option_name = 'bricks_global_settings';
+    $table_name = $wpdb->prefix . 'options';
+    $serialized_data = $wpdb->get_var($wpdb->prepare("SELECT option_value FROM $table_name WHERE option_name = %s", $option_name));
+
+    // Unserialize the data and retrieve the keys
+    if ($serialized_data) {
+        $unserialized_data = unserialize($serialized_data);
+
+        $site_key = isset($unserialized_data['apiKeyTurnstile']) ? $unserialized_data['apiKeyTurnstile'] : null;
+        $secret_key = isset($unserialized_data['apiSecretKeyTurnstile']) ? $unserialized_data['apiSecretKeyTurnstile'] : null;
+
+        // Return the keys as an array
+        return array(
+            'site_key' => $site_key,
+            'secret_key' => $secret_key
+        );
+    }
+
+    // Return empty keys if no valid data found
+    return array(
+        'site_key' => '',
+        'secret_key' => ''
+    );
+}
+
+// Enqueue Turnstile script
+function enqueue_turnstile_script() {
+    wp_enqueue_script('turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js', array(), null);
+}
+add_action('login_enqueue_scripts', 'enqueue_turnstile_script');
+
+// Add Turnstile to login, registration, and forgot password forms
+function add_turnstile_to_forms() {
+    $keys = get_cloudflare_turnstile_keys();
+    echo '<div class="cf-turnstile" data-sitekey="' . esc_attr($keys['site_key']) . '" data-theme="light"></div>';
+}
+add_action('login_form', 'add_turnstile_to_forms');
+add_action('register_form', 'add_turnstile_to_forms');
+add_action('lostpassword_form', 'add_turnstile_to_forms');
+
+// Verify Turnstile response
+function verify_turnstile_response($user, $password = '') {
+    if (!isset($_POST['cf-turnstile-response'])) {
+        return new WP_Error('captcha_missing', __('Please complete the CAPTCHA.'));
+    }
+
+    $keys = get_cloudflare_turnstile_keys();
+    $response = wp_remote_post('https://challenges.cloudflare.com/turnstile/v0/siteverify', array(
+        'body' => array(
+            'secret' => $keys['secret_key'],
+            'response' => $_POST['cf-turnstile-response'],
+            'remoteip' => $_SERVER['REMOTE_ADDR']
+        )
+    ));
+
+    if (is_wp_error($response)) {
+        return new WP_Error('captcha_error', __('Error verifying CAPTCHA. Please try again.'));
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $result = json_decode($body, true);
+
+    if (!$result['success']) {
+        return new WP_Error('captcha_invalid', __('CAPTCHA validation failed. Please try again.'));
+    }
+
+    return $user;
+}
+
+// Apply verification to login, registration, and password reset
+add_filter('authenticate', 'verify_turnstile_response', 30, 3);
+add_filter('registration_errors', 'verify_turnstile_response', 10, 2);
+add_action('lostpassword_post', function($errors) {
+    $user = verify_turnstile_response(null);
+    if (is_wp_error($user)) {
+        $errors->add($user->get_error_code(), $user->get_error_message());
+    }
+}, 10, 1);
+
+// Add some custom styling (optional)
+function turnstile_login_style() {
+    echo "<style>
+        body.login #login {
+            width: 100% !important;
+            max-width: 350px !important;
+        }
+        body.login .cf-turnstile {
+            margin-top: 0.4rem !important;
+            margin-bottom: 1rem !important;
+        }
+    </style>";
+}
+add_action('login_enqueue_scripts', 'turnstile_login_style', 20);
