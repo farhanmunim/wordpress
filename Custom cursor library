@@ -1,201 +1,157 @@
-CSS:
-.cursor {
-  width: 20px;
-  height: 20px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: white;
-  transition: transform 0.1s ease, 
-              background-color 0.2s ease,
-              opacity 0.2s ease,
-              width 0.2s ease,
-              height 0.2s ease;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-/* Hide cursor */
-.cursor.hidden {
-  opacity: 0;
-}
-
-/* Text cursor styles */
-.cursor.has-text {
-  width: auto;
-  min-width: 40px;
-  padding: 0 10px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  transform: translate(-50%, -50%) scale(1.5);
-}
-
-/* Icon cursor styles */
-.cursor.icon {
-  background: rgba(0, 0, 0, 0.8);
-  transform: translate(-50%, -50%) scale(1.5);
-}
-
-.cursor.icon.external::after {
-  content: "↗";
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.cursor.icon.internal::after {
-  content: "→";
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* Hover cursor styles */
-.cursor.hover {
-  background: rgba(255, 255, 255, 0.4);
-  transform: translate(-50%, -50%) scale(1.2);
-}
-
-/* Combined states */
-.cursor.has-text.hover,
-.cursor.icon.hover {
-  transform: translate(-50%, -50%) scale(1.7);
-}
-
-/* Optimize GPU usage */
-@media (prefers-reduced-motion: no-preference) {
-  .cursor {
-    transform: translate3d(-50%, -50%, 0);
-  }
-  
-  .cursor.has-text,
-  .cursor.icon {
-    transform: translate3d(-50%, -50%, 0) scale(1.5);
-  }
-  
-  .cursor.hover {
-    transform: translate3d(-50%, -50%, 0) scale(1.2);
-  }
-  
-  .cursor.has-text.hover,
-  .cursor.icon.hover {
-    transform: translate3d(-50%, -50%, 0) scale(1.7);
-  }
+css:
+:root {
+  --cursor-size: 30px;
+  --cursor-border-color: grey;
+  --cursor-bg-color: rgba(255, 255, 255, 0.1);
+  --cursor-blur: 2px;
+  --cursor-border-radius: 50%;
+  --cursor-padding: 20px;
+  --cursor-text-color: black;
+  --cursor-text-size: 16px;
+  --cursor-hover-bg: black;
+  --cursor-hover-border: black;
+  --cursor-hover-text-color: white;
+  --cursor-icon-size: 20px;
+  --cursor-click-scale: 0.8;
+  --transition-duration: 0.2s;
+  --transition-ease: ease;
 }
 
 body {
   cursor: none;
 }
 
-button, input, textarea, select, a {
-  cursor: auto;
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--cursor-size);
+  aspect-ratio: 1;
+  border: 1px solid var(--cursor-border-color);
+  border-radius: var(--cursor-border-radius);
+  pointer-events: none;
+  z-index: 9999;
+  backdrop-filter: blur(var(--cursor-blur));
+  background: var(--cursor-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  transition: 
+    width var(--transition-duration) var(--transition-ease),
+    padding var(--transition-duration) var(--transition-ease),
+    background-color var(--transition-duration) var(--transition-ease),
+    border var(--transition-duration) var(--transition-ease);
+  will-change: width, padding, background-color, border;
 }
-JS:
+
+.cursor-text {
+  color: var(--cursor-text-color);
+  font-size: var(--cursor-text-size);
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 
+    opacity var(--transition-duration) var(--transition-ease),
+    transform var(--transition-duration) var(--transition-ease);
+}
+
+.cursor.has-text {
+  width: auto;
+  padding: var(--cursor-padding);
+  background-color: var(--cursor-hover-bg);
+  border-color: var(--cursor-hover-border);
+}
+
+.cursor.has-text .cursor-text {
+  opacity: 1;
+  color: var(--cursor-hover-text-color);
+}
+
+.cursor.has-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--cursor-icon-size);
+  height: var(--cursor-icon-size);
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cursor.click {
+  transform: translate(-50%, -50%) scale(var(--cursor-click-scale));
+  transition: transform 0.1s var(--transition-ease);
+}
+
+/* Example icon classes */
+.cursor.icon-external::after {
+  background-image: url('path-to-your-icons/external.svg');
+}
+
+.cursor.icon-explore::after {
+  background-image: url('path-to-your-icons/explore.svg');
+}
+
+.cursor.has-react {
+  background-color: rgba(0, 128, 255, 0.8);
+}
+
+js:
 <script>
-// cursor.js
-document.addEventListener('DOMContentLoaded', function() {
-  class Cursor {
-    constructor() {
-      this.init();
-      this.addEventListeners();
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const cursor = document.createElement("div");
+  cursor.classList.add("cursor");
+  document.body.appendChild(cursor);
 
-    init() {
-      this.cursor = document.createElement('div');
-      this.cursor.className = 'cursor';
-      document.body.appendChild(this.cursor);
-      
-      // Cache cursor position for RAF
-      this.cursorX = -100;
-      this.cursorY = -100;
-      this.currentX = -100;
-      this.currentY = -100;
-      
-      // Start render loop
-      this.render();
-    }
+  const cursorText = document.createElement("div");
+  cursorText.classList.add("cursor-text");
+  cursor.appendChild(cursorText);
 
-    render = () => {
-      // Add smooth interpolation
-      this.currentX += (this.cursorX - this.currentX) * 0.1;
-      this.currentY += (this.cursorY - this.currentY) * 0.1;
-      
-      // Only update DOM if position changed significantly
-      if (Math.abs(this.currentX - this.cursorX) > 0.01 || Math.abs(this.currentY - this.cursorY) > 0.01) {
-        this.cursor.style.left = `${this.currentX}px`;
-        this.cursor.style.top = `${this.currentY}px`;
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+  });
+
+  document.querySelectorAll("[cursor-text], [cursor-icon], [cursor-react]").forEach((element) => {
+    element.addEventListener("mouseenter", () => {
+      const text = element.getAttribute("cursor-text");
+      const icon = element.getAttribute("cursor-icon");
+
+      if (text) {
+        cursor.classList.add("has-text");
+        cursorText.textContent = text;
       }
-      
-      requestAnimationFrame(this.render);
-    }
 
-    addEventListeners() {
-      // Throttle mousemove with requestAnimationFrame
-      let rafPending = false;
-      
-      document.addEventListener('mousemove', (e) => {
-        this.cursorX = e.clientX;
-        this.cursorY = e.clientY;
-      }, { passive: true });
+      if (icon) {
+        cursor.classList.add("has-icon", `icon-${icon}`);
+      }
 
-      // Handle cursor states
-      document.addEventListener('mouseover', (e) => {
-        const target = e.target.closest('[data-cursor-text], [data-cursor-icon], [data-cursor-hover], [data-cursor-hide]');
-        if (!target) return;
+      if (element.hasAttribute("cursor-react")) {
+        cursor.classList.add("has-react");
+      }
+    });
 
-        // Handle data-cursor-hide
-        if (target.hasAttribute('data-cursor-hide')) {
-          this.cursor.classList.add('hidden');
-          return;
-        }
+    element.addEventListener("mouseleave", () => {
+      cursor.classList.remove("has-text", "has-react");
+      cursorText.textContent = "";
 
-        // Handle data-cursor-text
-        const text = target.getAttribute('data-cursor-text');
-        if (text) {
-          this.cursor.textContent = text;
-          this.cursor.classList.add('has-text');
-          return;
-        }
-
-        // Handle data-cursor-icon
-        const icon = target.getAttribute('data-cursor-icon');
-        if (icon) {
-          this.cursor.textContent = '';
-          this.cursor.classList.add('icon', icon);
-          return;
-        }
-
-        // Handle data-cursor-hover
-        if (target.hasAttribute('data-cursor-hover')) {
-          this.cursor.classList.add('hover');
-        }
+      Array.from(cursor.classList).forEach((cls) => {
+        if (cls.startsWith("icon-")) cursor.classList.remove(cls);
       });
+    });
+  });
 
-      document.addEventListener('mouseout', (e) => {
-        const target = e.target.closest('[data-cursor-text], [data-cursor-icon], [data-cursor-hover], [data-cursor-hide]');
-        if (target) {
-          this.cursor.textContent = '';
-          this.cursor.classList.remove('has-text', 'icon', 'external', 'internal', 'hover', 'hidden');
-        }
-      });
+  document.addEventListener("mousedown", () => {
+    cursor.classList.add("click");
+  });
 
-      // Handle cursor leaving/entering window
-      document.addEventListener('mouseleave', () => {
-        this.cursor.classList.add('hidden');
-      });
-
-      document.addEventListener('mouseenter', () => {
-        this.cursor.classList.remove('hidden');
-      });
-    }
-  }
-
-  // Initialize the cursor
-  new Cursor();
+  document.addEventListener("mouseup", () => {
+    cursor.classList.remove("click");
+  });
 });
+
 </script>
