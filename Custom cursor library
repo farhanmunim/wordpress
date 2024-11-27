@@ -1,24 +1,34 @@
 css:
 :root {
-  --cursor-size: 30px;
+  /* Cursor styling variables */
+  --cursor-size: 3rem;
   --cursor-border-color: grey;
   --cursor-bg-color: rgba(255, 255, 255, 0.1);
-  --cursor-blur: 2px;
+  --cursor-blur: 0.2rem;
   --cursor-border-radius: 50%;
-  --cursor-padding: 20px;
+  --cursor-padding: 2rem;
+
+  /* Cursor text styling */
   --cursor-text-color: black;
-  --cursor-text-size: 16px;
+  --cursor-text-size: 1.4rem;
   --cursor-hover-bg: black;
   --cursor-hover-border: black;
   --cursor-hover-text-color: white;
-  --cursor-icon-size: 20px;
+
+  /* Cursor icon and media styling */
+  --cursor-icon-size: 2rem;
+  --cursor-media-size: 5rem;
+
+  /* Click interaction */
   --cursor-click-scale: 0.8;
+
+  /* Transition settings */
   --transition-duration: 0.2s;
   --transition-ease: ease;
 }
 
 body {
-  cursor: none;
+  cursor: none; /* Hide the default system cursor */
 }
 
 .cursor {
@@ -26,10 +36,10 @@ body {
   left: 0;
   top: 0;
   width: var(--cursor-size);
-  aspect-ratio: 1;
+  aspect-ratio: 1; /* Maintain a 1:1 aspect ratio for the circle */
   border: 1px solid var(--cursor-border-color);
   border-radius: var(--cursor-border-radius);
-  pointer-events: none;
+  pointer-events: none; /* Prevent cursor from interfering with pointer events */
   z-index: 9999;
   backdrop-filter: blur(var(--cursor-blur));
   background: var(--cursor-bg-color);
@@ -62,13 +72,17 @@ body {
   padding: var(--cursor-padding);
   background-color: var(--cursor-hover-bg);
   border-color: var(--cursor-hover-border);
+backdrop-filter: none;
 }
 
 .cursor.has-text .cursor-text {
   opacity: 1;
   color: var(--cursor-hover-text-color);
+text-transform: uppercase;
+letter-spacing: 0.05em;
 }
 
+/* Icon styling */
 .cursor.has-icon::after {
   content: "";
   position: absolute;
@@ -82,9 +96,18 @@ body {
   pointer-events: none;
 }
 
-.cursor.click {
-  transform: translate(-50%, -50%) scale(var(--cursor-click-scale));
-  transition: transform 0.1s var(--transition-ease);
+/* Media styling */
+.cursor.has-media::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--cursor-media-size);
+  height: var(--cursor-media-size);
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 /* Example icon classes */
@@ -96,9 +119,26 @@ body {
   background-image: url('path-to-your-icons/explore.svg');
 }
 
+/* Example media classes */
+.cursor.media-video::after {
+  background-image: url('path-to-your-media/video-thumbnail.jpg');
+}
+
+.cursor.media-image::after {
+  background-image: url('path-to-your-media/sample-image.jpg');
+}
+
+/* Click interaction */
+.cursor.click {
+  transform: translate(-50%, -50%) scale(var(--cursor-click-scale));
+  transition: transform 0.1s var(--transition-ease);
+}
+
+/* React styling */
 .cursor.has-react {
   background-color: rgba(0, 128, 255, 0.8);
 }
+
 
 js:
 <script>
@@ -116,10 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.style.top = `${e.clientY}px`;
   });
 
-  document.querySelectorAll("[cursor-text], [cursor-icon], [cursor-react]").forEach((element) => {
+  document.querySelectorAll("[data-cursor-text], [data-cursor-icon], [data-cursor-media], [data-cursor-react]").forEach((element) => {
     element.addEventListener("mouseenter", () => {
-      const text = element.getAttribute("cursor-text");
-      const icon = element.getAttribute("cursor-icon");
+      const text = element.getAttribute("data-cursor-text");
+      const icon = element.getAttribute("data-cursor-icon");
 
       if (text) {
         cursor.classList.add("has-text");
@@ -130,13 +170,17 @@ document.addEventListener("DOMContentLoaded", () => {
         cursor.classList.add("has-icon", `icon-${icon}`);
       }
 
-      if (element.hasAttribute("cursor-react")) {
+      if (element.hasAttribute("data-cursor-media")) {
+        cursor.classList.add("has-media");
+      }
+
+      if (element.hasAttribute("data-cursor-react")) {
         cursor.classList.add("has-react");
       }
     });
 
     element.addEventListener("mouseleave", () => {
-      cursor.classList.remove("has-text", "has-react");
+      cursor.classList.remove("has-text", "has-react", "has-media");
       cursorText.textContent = "";
 
       Array.from(cursor.classList).forEach((cls) => {
@@ -153,5 +197,4 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.classList.remove("click");
   });
 });
-
 </script>
