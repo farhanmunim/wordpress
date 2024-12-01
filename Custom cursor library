@@ -3,7 +3,7 @@ css:
   /* Cursor styling variables */
   --cursor-size: 3rem;
   --cursor-border-color: grey;
-  --cursor-bg-color: rgba(255, 255, 255, 0.1);
+  --cursor-bg-color: rgba(137,137,137, 0.1);
   --cursor-blur: 0.2rem;
   --cursor-border-radius: 50%;
   --cursor-padding: 2rem;
