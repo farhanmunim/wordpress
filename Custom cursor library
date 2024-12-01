@@ -143,6 +143,24 @@ letter-spacing: 0.05em;
 js:
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  // Device detection function
+  function isMobileOrTablet() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isMobileDevice = /Mobi|Android|iPhone|iPad|iPod|Windows Phone|BlackBerry|webOS|Opera Mini|IEMobile/i.test(userAgent);
+    const isSmallScreen = window.innerWidth <= 1024;
+    const isTouchPointer = window.matchMedia("(pointer: coarse)").matches;
+    const isDesktopPlatform = /Win|Mac|Linux/i.test(userAgent) && !isMobileDevice;
+
+    return (isMobileDevice || (isSmallScreen && isTouchPointer)) && !isDesktopPlatform;
+  }
+
+  // Disable cursor logic for mobile/tablet devices
+  if (isMobileOrTablet()) {
+    console.log("Custom cursor disabled for mobile/tablet devices.");
+    return; // Stop execution for touch-based devices
+  }
+
+  // Custom cursor initialization
   const cursor = document.createElement("div");
   cursor.classList.add("cursor");
   document.body.appendChild(cursor);
@@ -151,11 +169,13 @@ document.addEventListener("DOMContentLoaded", () => {
   cursorText.classList.add("cursor-text");
   cursor.appendChild(cursorText);
 
+  // Mousemove event to position the cursor
   document.addEventListener("mousemove", (e) => {
     cursor.style.left = `${e.clientX}px`;
     cursor.style.top = `${e.clientY}px`;
   });
 
+  // Add event listeners for elements with cursor attributes
   document.querySelectorAll("[data-cursor-text], [data-cursor-icon], [data-cursor-media], [data-cursor-react]").forEach((element) => {
     element.addEventListener("mouseenter", () => {
       const text = element.getAttribute("data-cursor-text");
@@ -189,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Click effect for cursor
   document.addEventListener("mousedown", () => {
     cursor.classList.add("click");
   });
@@ -197,4 +218,5 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.classList.remove("click");
   });
 });
+
 </script>
