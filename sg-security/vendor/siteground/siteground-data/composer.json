@@ -1,0 +1,23 @@
+{
+    "name": "siteground/siteground-data",
+    "require": {
+        "siteground/siteground-helper": "master@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "SiteGround_Data\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stanimir Stoyanov",
+            "email": "stanimir.stoyanov@siteground.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@gitlab.siteground.com:wordpress/siteground-helper.git"
+        }
+    ]
+}

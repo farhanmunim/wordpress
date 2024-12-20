@@ -1,0 +1,9 @@
+{
+    "name": "siteground/siteground-i18n",
+    "autoload": {
+        "psr-4": {
+            "SiteGround_i18n\\": "src/"
+        }
+    },
+    "require": {}
+}
