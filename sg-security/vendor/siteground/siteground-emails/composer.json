@@ -1,9 +1,0 @@
-{
-    "name": "siteground/siteground-emails",
-    "autoload": {
-        "psr-4": {
-            "SiteGround_Emails\\": "src/"
-        }
-    },
-    "require": {}
-}
