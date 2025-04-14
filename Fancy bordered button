@@ -1,0 +1,57 @@
+HTML:
+
+<button class="fancy-button">
+  <span class="text">ALL POSTS</span>
+</button>
+
+
+CSS:
+.fancy-button {
+  position: relative;
+  display: inline-block;
+  padding: 1.25rem 2.5rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 1px solid #bfa264;
+  cursor: pointer;
+  overflow: visible;
+  z-index: 0;
+}
+
+.fancy-button::before,
+.fancy-button::after {
+  content: '';
+  position: absolute;
+  background-color: #bfa264;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+/* Bottom-left to right horizontal line */
+.fancy-button::before {
+  height: 2px;
+  width: 120%;
+  bottom: -10px;
+  left: -10px;
+  transform: translateX(0);
+}
+
+/* Top-right to bottom vertical line */
+.fancy-button::after {
+  width: 2px;
+  height: 120%;
+  right: -10px;
+  top: 10px;
+  transform: translateY(0);
+}
+
+/* Hover: move both away */
+.fancy-button:hover::before {
+  transform: translateX(-200%);
+}
+
+.fancy-button:hover::after {
+  transform: translateY(-200%);
+}
