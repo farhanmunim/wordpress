@@ -143,10 +143,10 @@ CSS:
   --mw-l: 74.5rem;
   --mw-xl: 84.5rem;
 
-  --post-btn-circle: 1rem;
-  --post-btn-icon: calc(var(--fs-h4) - 0.2rem);
-  --post-btn-gap: 2.2rem;
-  --post-btn-scale: 2.3;
+  --post-btn-circle: 0.8rem;
+  --post-btn-icon: var(--fs-h4);
+  --post-btn-gap: 1.6rem;
+  --post-btn-scale: 2.8;
 }
 
 .post__content > * + * {
@@ -314,32 +314,37 @@ CSS:
   display: inline-block;
 }
 
-.post__content .wp-block-button__link::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) scale(1);
-  width: var(--post-btn-circle);
-  aspect-ratio: 1;
-  background-color: #000;
-  border-radius: 50%;
-  transition: transform 0.2s ease;
-  z-index: 0;
+.post__content .wp-block-button__link{
+	position: relative;
+	display: flex;
+	gap: var(--post-btn-gap);
+	align-items: center;
+	justify-content: center;
+	padding: unset;
+	background-color: var(--clr-post-btn-bg);
+	color: black;
 }
 
-.post__content .wp-block-button__link:hover::before {
-  transform: translateY(-50%) scale(var(--post-btn-scale));
+.post__content .wp-block-button__link::after{
+	content:'';
+	display: inline-block;
+	width: var(--post-btn-circle);
+	height: var(--post-btn-circle);
+	background-color: currentcolor;
+	border-radius: 999px;
+	position: relative;
+	transition: 0.2s ease;
 }
 
-.post__content .wp-block-button__link::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: var(--post-btn-icon);
-  height: var(--post-btn-icon);
-  background-color: var(--clr-body-d);
+.post__content .wp-block-button__link:hover::after{
+	transform: scale(var(--post-btn-scale));
+}
+
+.post__content .wp-block-button__link::before{
+	content:'';
+	width: var(--post-btn-icon);
+	height: var(--post-btn-icon);
+	background-color: var(--clr-post-btn-bg);
   -webkit-mask-image: url('https://blueprint.farhan.app/wp-content/uploads/IcBaselineArrowForward.svg');
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -348,14 +353,16 @@ CSS:
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  transform: translate(calc((var(--post-btn-icon) - var(--post-btn-circle)) / 2), -50%);
-  opacity: 0;
-  transition: 0.2s ease;
-  z-index: 1;
+	position: absolute;
+	right: 0;
+	transform: translateX(25%);
+	z-index: 1;
+	opacity: 0;
+	transition: 0.2s ease;
 }
 
-.post__content .wp-block-button__link:hover::after {
-  opacity: 1;
+.post__content .wp-block-button__link:hover::before{
+	opacity: 1;
 }
 
 .post__tags a {
