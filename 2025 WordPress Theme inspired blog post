@@ -1,3 +1,67 @@
+JS:
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const copySVG = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16 1H2v16h2V3h12zm5 4H6v18h15zm-2 16H8V7h11z"/>
+    </svg>
+  `;
+
+  const copiedSVG = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#4EB233">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"/>
+    </svg>
+  `;
+
+  document.querySelectorAll("pre.wp-block-code").forEach(function (pre) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "code-block-wrapper";
+
+    const button = document.createElement("button");
+    button.className = "copy-code-btn";
+    button.type = "button";
+    button.setAttribute("aria-label", "Copy code");
+    button.innerHTML = copySVG;
+
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+    wrapper.appendChild(button);
+
+    button.addEventListener("click", function () {
+      const code = pre.querySelector("code");
+      if (!code) return;
+
+      const text = code.innerText;
+
+      navigator.clipboard.writeText(text).then(() => {
+        button.innerHTML = copiedSVG;
+        button.setAttribute("aria-label", "Copied!");
+
+        setTimeout(() => {
+          button.innerHTML = copySVG;
+          button.setAttribute("aria-label", "Copy code");
+        }, 750);
+      });
+    });
+  });
+
+  // 🔍 Now detect and mark scrollable wrappers
+  function checkVerticalOverflow(el) {
+    return el.scrollHeight > el.clientHeight;
+  }
+
+  document.querySelectorAll(".post__content > .code-block-wrapper").forEach(wrapper => {
+    const pre = wrapper.querySelector("pre");
+    if (!pre) return;
+
+    if (!checkVerticalOverflow(pre)) {
+      wrapper.classList.add("no-scroll");
+    }
+  });
+});
+
+</script>
+CSS:
 /*
  Theme Name:   Bricks Child Theme
  Theme URI:    https://bricksbuilder.io/
@@ -63,6 +127,8 @@
   --clr-body: #111;
   --clr-body-d: #fff;
   --clr-body--light: #686868;
+	
+	--clr-code: #f7f7f7;
 
   --clr-btn-bg--primary: var(--clr-body);
   --clr-btn-text--primary: var(--clr-body-d);
@@ -119,23 +185,49 @@
   margin-left: -4rem;
   margin-top: 0.8rem;
 }
-.post__content > pre{
+
+.post__content pre{
   max-height: 18.594rem;
   padding: 3rem;
   overflow: auto;
 }
 
-.post__content > pre, 
-.post__content > * > code {
+.post__content pre, 
+.post__content pre > code, .post__content > p > code {
   font-family: 'Fira Code';
   font-weight: 300;
   font-size: var(--fs-h4);
   color: var(--clr-body);
-  background-color: #FBFAF3;
+  background-color: /*#FBFAF3*/ var(--clr-code);
 }
 
 .post__content > p > code {
   padding-inline: 0.4rem;
+}
+
+.post__content > .code-block-wrapper{
+	position: relative;
+}
+
+.copy-code-btn{
+	color: color-mix(in srgb, currentColor 70%, transparent);
+	display: grid;
+	place-content: center;
+	padding: 1rem;
+	background-color: #ededed;
+	position: absolute;
+	top: 1rem;
+	right: 2.5rem;
+	transition: 0.1s ease;
+}
+
+.copy-code-btn:not([aria-label="Copied!"]):hover{
+	color: color-mix(in srgb, currentColor 100%, transparent);
+}
+
+.code-block-wrapper.no-scroll > .copy-code-btn{
+	top: 1.5rem;
+	right: 1.5rem;
 }
 
 .post__content > blockquote {
