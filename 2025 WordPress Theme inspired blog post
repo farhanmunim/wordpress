@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+
 CSS:
 /*
  Theme Name:   Bricks Child Theme
@@ -143,9 +144,9 @@ CSS:
   --mw-xl: 84.5rem;
 
   --post-btn-circle: 1rem;
-  --post-btn-icon: calc(var(--fs-h4) - 0.3rem);
-  --post-btn-gap: -2.2rem;
-  --post-btn-scale: 2.2;
+  --post-btn-icon: calc(var(--fs-h4) - 0.2rem);
+  --post-btn-gap: 2.2rem;
+  --post-btn-scale: 2.3;
 }
 
 .post__content > * + * {
@@ -307,7 +308,7 @@ CSS:
   font-size: var(--fs-h4);
   color: var(--clr-post-btn-text);
   background-color: var(--clr-post-btn-bg);
-  padding: unset;
+  padding: 0 var(--post-btn-gap) 0 0;
   border: unset;
   position: relative;
   display: inline-block;
@@ -316,7 +317,7 @@ CSS:
 .post__content .wp-block-button__link::before {
   content: '';
   position: absolute;
-  right: var(--post-btn-gap);
+  right: 0;
   top: 50%;
   transform: translateY(-50%) scale(1);
   width: var(--post-btn-circle);
@@ -334,7 +335,7 @@ CSS:
 .post__content .wp-block-button__link::after {
   content: "";
   position: absolute;
-  right: var(--post-btn-gap);
+  right: 0;
   top: 50%;
   width: var(--post-btn-icon);
   height: var(--post-btn-icon);
