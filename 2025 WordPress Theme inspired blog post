@@ -1,0 +1,285 @@
+2025 WordPress Theme inspired blog post - CSS:
+
+/*
+ Theme Name:   Bricks Child Theme
+ Theme URI:    https://bricksbuilder.io/
+ Description:  Use this child theme to extend Bricks.
+ Author:       Bricks
+ Author URI:   https://bricksbuilder.io/
+ Template:     bricks
+ Version:      1.1
+ Text Domain:  bricks
+*/
+
+:root {
+  --fluid-vp-min: 36;
+  --fluid-vp-max: 128;
+
+  --h1-min: 3.5;
+  --h1-max: 4.8;
+  --h1-slope: calc((var(--h1-max) - var(--h1-min)) / (var(--fluid-vp-max) - var(--fluid-vp-min)));
+  --h1-intercept: calc(var(--h1-min) - var(--h1-slope) * var(--fluid-vp-min));
+  --fs-h1: clamp(
+    calc(var(--h1-min) * 1rem),
+    calc(var(--h1-slope) * 100vw + var(--h1-intercept) * 1rem),
+    calc(var(--h1-max) * 1rem)
+  );
+
+  --h2-min: 2.8;
+  --h2-max: 3.2;
+  --h2-slope: calc((var(--h2-max) - var(--h2-min)) / (var(--fluid-vp-max) - var(--fluid-vp-min)));
+  --h2-intercept: calc(var(--h2-min) - var(--h2-slope) * var(--fluid-vp-min));
+  --fs-h2: clamp(
+    calc(var(--h2-min) * 1rem),
+    calc(var(--h2-slope) * 100vw + var(--h2-intercept) * 1rem),
+    calc(var(--h2-max) * 1rem)
+  );
+
+  --h3-min: 1.8;
+  --h3-max: 2.2;
+  --h3-slope: calc((var(--h3-max) - var(--h3-min)) / (var(--fluid-vp-max) - var(--fluid-vp-min)));
+  --h3-intercept: calc(var(--h3-min) - var(--h3-slope) * var(--fluid-vp-min));
+  --fs-h3: clamp(
+    calc(var(--h3-min) * 1rem),
+    calc(var(--h3-slope) * 100vw + var(--h3-intercept) * 1rem),
+    calc(var(--h3-max) * 1rem)
+  );
+
+  --h4-min: 1.6;
+  --h4-max: 1.8;
+  --h4-slope: calc((var(--h4-max) - var(--h4-min)) / (var(--fluid-vp-max) - var(--fluid-vp-min)));
+  --h4-intercept: calc(var(--h4-min) - var(--h4-slope) * var(--fluid-vp-min));
+  --fs-h4: clamp(
+    calc(var(--h4-min) * 1rem),
+    calc(var(--h4-slope) * 100vw + var(--h4-intercept) * 1rem),
+    calc(var(--h4-max) * 1rem)
+  );
+
+  --fs-body: var(--fs-h3);
+  --fs-xs: 1.4rem;
+
+  --lh-body: 1.4;
+  --lh-heading: 1.125;
+
+  --clr-heading: #111;
+  --clr-body: #111;
+  --clr-body-d: #fff;
+  --clr-body--light: #686868;
+
+  --clr-btn-bg--primary: var(--clr-body);
+  --clr-btn-text--primary: var(--clr-body-d);
+  --clr-btn-bg--secondary: var(--clr-body-d);
+  --clr-btn-text--secondary: var(--clr-body);
+
+  --clr-post-btn-bg: var(--clr-body-d);
+  --clr-post-btn-text: var(--clr-body);
+
+  --mw-m: 64.5rem;
+  --mw-l: 74.5rem;
+  --mw-xl: 84.5rem;
+
+  --post-btn-circle: 1rem;
+  --post-btn-icon: calc(var(--fs-h4) - 0.02rem);
+  --post-btn-gap: -2.2rem;
+  --post-btn-scale: 2.2;
+}
+
+.post__content > * + * {
+  margin-top: 1.92rem;
+  margin-bottom: unset;
+}
+
+.post__content > :first-child:where(p) {
+  margin-top: 1.92rem;
+}
+
+.post__content > :first-child:where(h2) {
+  margin-block: 5rem 3rem;
+}
+
+.post__content > *:not(h2, h3) + :where(h2, h3) {
+  margin-block: 5rem 3rem;
+}
+
+.post__content > *:where(h2, h3) + :where(h2, h3) {
+  margin-bottom: 3rem;
+}
+
+.post__content > * + h4 {
+  margin-block: 4rem 3rem;
+}
+
+.post__content > ul li + li,
+.post__content > ol li + li,
+.post__content > * li > ul,
+* li > ol {
+  margin-top: 0.8rem;
+}
+
+.post__content > * li > figure,
+.post__content > * li > img {
+  margin-left: -4rem;
+  margin-top: 0.8rem;
+}
+.post__content > pre{
+  max-height: 18.594rem;
+  padding: 3rem;
+  overflow: auto;
+}
+
+.post__content > pre, 
+.post__content > * > code {
+  font-family: 'Fira Code';
+  font-weight: 300;
+  font-size: var(--fs-h4);
+  color: var(--clr-body);
+  background-color: #FBFAF3;
+}
+
+.post__content > p > code {
+  padding-inline: 0.4rem;
+}
+
+.post__content > blockquote {
+  font-family: inherit;
+  font-size: var(--fs-body);
+  border-left: 0.2rem solid currentColor;
+  padding: 2rem 3rem;
+}
+
+/* pointy hr {
+  height: 1px;
+  width: 100%;
+  margin: 0;
+  color: #ccc;
+  background-color: currentColor;
+  border: none;
+  mask-image: linear-gradient(to right, transparent 0%, currentColor 20%, currentColor 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, currentColor 20%, currentColor 80%, transparent 100%);
+  mask-mode: alpha;
+  -webkit-mask-mode: alpha;
+} */
+
+.post__content hr {
+  border-top-color: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.post__content > * figcaption {
+  font-size: var(--fs-xs);
+  font-weight: 300;
+  color: var(--clr-body--light);
+}
+
+.post__content > p > a,
+.post__meta a {
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  text-decoration-thickness: 0.1rem;
+	text-decoration-color: color-mix(in srgb, currentColor 100%, transparent);
+	transition: 0.1s ease;
+}
+
+.post__content > p > a:hover,
+.post__meta a:hover {
+  text-decoration-color: color-mix(in srgb, currentColor 0%, transparent);
+}
+
+.post__container > *:not(.post__content),
+.post__content > *:not(.breakout--s, .breakout--m) {
+  width: 100%;
+  max-width: var(--mw-m);
+  margin-inline: auto;
+}
+
+.post__content > .breakout--s {
+  width: 100%;
+  max-width: var(--mw-l);
+  margin-inline: auto;
+}
+
+.post__content > .breakout--m {
+  width: 100%;
+  max-width: var(--mw-xl);
+  margin-inline: auto;
+}
+
+.post__content > figure > table * {
+  font-size: var(--fs-h4);
+  text-align: left;
+  border-color: currentcolor;
+}
+
+.post__content > figure > table > thead {
+  border-bottom: unset;
+}
+
+.post__content .wp-block-button__link {
+  font-size: var(--fs-h4);
+  color: var(--clr-post-btn-text);
+  background-color: var(--clr-post-btn-bg);
+  padding: unset;
+  border: unset;
+  position: relative;
+  display: inline-block;
+}
+
+.post__content .wp-block-button__link::before {
+  content: '';
+  position: absolute;
+  right: var(--post-btn-gap);
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  width: var(--post-btn-circle);
+  aspect-ratio: 1;
+  background-color: #000;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  z-index: 0;
+}
+
+.post__content .wp-block-button__link:hover::before {
+  transform: translateY(-50%) scale(var(--post-btn-scale));
+}
+
+.post__content .wp-block-button__link::after {
+  content: "";
+  position: absolute;
+  right: var(--post-btn-gap);
+  top: 50%;
+  width: var(--post-btn-icon);
+  height: var(--post-btn-icon);
+  background-color: var(--clr-body-d);
+  -webkit-mask-image: url('https://blueprint.farhan.app/wp-content/uploads/IcBaselineArrowForward.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url('https://blueprint.farhan.app/wp-content/uploads/IcBaselineArrowForward.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transform: translate(calc((var(--post-btn-icon) - var(--post-btn-circle)) / 2), -50%);
+  opacity: 0;
+  transition: 0.2s ease;
+  z-index: 1;
+}
+
+.post__content .wp-block-button__link:hover::after {
+  opacity: 1;
+}
+
+.post__tags a {
+  font-size: var(--fs-xs);
+  color: var(--clr-body);
+  padding: calc(0.5em - 0.1rem) calc(1em - 0.1rem);
+  border: 0.1rem solid color-mix(in srgb, currentColor 20%, transparent);
+  border-radius: 999px;
+	text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  text-decoration-thickness: 0.1rem;
+	text-decoration-color: color-mix(in srgb, currentColor 0%, transparent);
+	transition: 0.1s ease;
+}
+
+.post__tags a:hover {
+	text-decoration-color: color-mix(in srgb, currentColor 100%, transparent);
+}
