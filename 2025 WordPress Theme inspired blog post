@@ -75,6 +75,8 @@ CSS:
 */
 
 :root {
+	--ff-primary: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --ff-code: 'Fira Code', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --fluid-vp-min: 36;
   --fluid-vp-max: 128;
 
@@ -120,9 +122,11 @@ CSS:
 
   --fs-body: var(--fs-h3);
   --fs-xs: 1.4rem;
+	
+	--fs-alert: var(--fs-h4);
 
-  --lh-body: 1.4;
-  --lh-heading: 1.125;
+  --lh-body: 1.5;
+  --lh-heading: 1.2;
 
   --clr-heading: #111;
   --clr-body: #111;
@@ -154,7 +158,7 @@ CSS:
   margin-bottom: unset;
 }
 
-.post__content > :first-child:where(p) {
+.post__content > :first-child:not(h2) {
   margin-top: 1.92rem;
 }
 
@@ -189,21 +193,25 @@ CSS:
 
 .post__content pre{
   max-height: 18.594rem;
-  padding: 3rem;
+  padding: 2rem;
   overflow: auto;
 }
 
 .post__content pre, 
-.post__content pre > code, .post__content > p > code {
-  font-family: 'Fira Code';
+.post__content pre > code {
+  font-family: var(--ff-code);
   font-weight: 300;
-  font-size: var(--fs-h4);
+  font-size: 1.6rem;
   color: var(--clr-body);
   background-color: /*#FBFAF3*/ var(--clr-code);
 }
 
-.post__content > p > code {
-  padding-inline: 0.4rem;
+.post__content *:not(pre) > code {
+	font-family: var(--ff-code);
+	font-size: var(--fs-body);
+	font-weight: 300;
+  padding: 0.2rem 0.4rem;
+	background-color: /*#FBFAF3*/ var(--clr-code);
 }
 
 .post__content > .code-block-wrapper{
@@ -214,11 +222,11 @@ CSS:
 	color: color-mix(in srgb, currentColor 70%, transparent);
 	display: grid;
 	place-content: center;
-	padding: 1rem;
+	padding: 1.2rem;
 	background-color: #ededed;
 	position: absolute;
-	top: 1rem;
-	right: 2.5rem;
+	top: 0;
+	right: 0;
 	transition: 0.1s ease;
 }
 
@@ -226,13 +234,14 @@ CSS:
 	color: color-mix(in srgb, currentColor 100%, transparent);
 }
 
+/* 
 .code-block-wrapper.no-scroll > .copy-code-btn{
 	top: 1.5rem;
 	right: 1.5rem;
-}
+} */
 
 .post__content > blockquote {
-  font-family: inherit;
+  font-family: var(--ff-primary);
   font-size: var(--fs-body);
   border-left: 0.2rem solid currentColor;
   padding: 2rem 3rem;
@@ -261,7 +270,7 @@ CSS:
   color: var(--clr-body--light);
 }
 
-.post__content > p > a,
+.post__content a,
 .post__meta a {
   text-decoration: underline;
   text-underline-offset: 0.2rem;
@@ -270,13 +279,12 @@ CSS:
 	transition: 0.1s ease;
 }
 
-.post__content > p > a:hover,
-.post__meta a:hover {
+.post__content a:hover, .post__meta a:hover {
   text-decoration-color: color-mix(in srgb, currentColor 0%, transparent);
 }
 
 .post__container > *:not(.post__content),
-.post__content > *:not(.breakout--s, .breakout--m) {
+.post__content > *:not( figure:has(img), .breakout--s, .breakout--m) {
   width: 100%;
   max-width: var(--mw-m);
   margin-inline: auto;
@@ -304,25 +312,48 @@ CSS:
   border-bottom: unset;
 }
 
+.post__content > figure:has(img){
+	width: 100%;
+	max-width: var(--mw-xl);
+	margin-inline: auto;
+}
+
 .post__content .wp-block-button__link {
   font-size: var(--fs-h4);
   color: var(--clr-post-btn-text);
   background-color: var(--clr-post-btn-bg);
-  padding: 0 var(--post-btn-gap) 0 0;
   border: unset;
   position: relative;
-  display: inline-block;
-}
-
-.post__content .wp-block-button__link{
-	position: relative;
 	display: flex;
 	gap: var(--post-btn-gap);
 	align-items: center;
 	justify-content: center;
 	padding: unset;
 	background-color: var(--clr-post-btn-bg);
-	color: black;
+	transition: 0.1s ease;
+}
+
+.post__content .wp-block-button__link:hover{
+	text-decoration-color: color-mix(in srgb, currentColor 0%, transparent);
+}
+
+.post__content .unavailable{
+	position: relative;
+}
+
+.post__content .unavailable::after{
+	content:'';
+	width: 100%;
+	height: 0.2rem;
+	background-color: var(--clr-body);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	z-index: 2;
+}
+
+.post__content .unavailable .wp-block-button__link{
+	--clr-post-btn-text: var(--clr-body--light);
 }
 
 .post__content .wp-block-button__link::after{
@@ -345,11 +376,11 @@ CSS:
 	width: var(--post-btn-icon);
 	height: var(--post-btn-icon);
 	background-color: var(--clr-post-btn-bg);
-  -webkit-mask-image: url('https://blueprint.farhan.app/wp-content/uploads/IcBaselineArrowForward.svg');
+  -webkit-mask-image: url('https://dev.farhan.app/wp-content/uploads/ArrowForward.svg');
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
-  mask-image: url('https://blueprint.farhan.app/wp-content/uploads/IcBaselineArrowForward.svg');
+  mask-image: url('https://dev.farhan.app/wp-content/uploads/ArrowForward.svg');
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
@@ -380,4 +411,39 @@ CSS:
 
 .post__tags a:hover {
 	text-decoration-color: color-mix(in srgb, currentColor 100%, transparent);
+}
+
+.post__content > .alert{
+	font-size: var(--fs-alert);
+	letter-spacing: 0.01em;
+	display: flex;
+	gap: calc(var(--fs-alert) - 0.4rem);
+	background-color: var(--clr-code);
+	padding: 2rem;
+}
+
+.post__content > .alert > svg{
+	width: var(--fs-alert);
+	height: var(--fs-alert);
+	flex-shrink: 0;
+	transform: translateY(0.4rem);
+}
+
+.post__content > .youtube{
+	position: relative;
+	border: 0.1rem solid color-mix(in srgb, currentColor 7%, transparent);
+}
+
+.post__content > .youtube a::after{
+	content:'Play on YouTube';
+	font-size: var(--fs-xs);
+	font-weight: 400;
+	color: #fff;
+	padding: 0.1rem 0.6rem;
+	border-radius: 0.4rem;
+	position: absolute;
+	right: 1.4rem;
+	top: 1.4rem;
+	background-color: #f71d1d;
+	z-index: 1;
 }
