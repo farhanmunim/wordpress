@@ -1,0 +1,167 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/* ----------------------------------------------------------------
+ * MANUAL RE-RUN OVERRIDE
+ * ---------------------------------------------------------------
+ * Temporarily uncomment the line below, save the file, load any
+ * admin page, then comment it again.  Both “settings applied” and
+ * “comments removed” flags are cleared so the full routine runs
+ * on the next request.
+ */
+// add_action( 'admin_init', function () {
+//     delete_option( 'blueprint_settings_applied' );
+//     delete_option( 'blueprint_comments_removed' );
+// } );
+
+/**
+ * 1. GENERAL SETTINGS
+ */
+function blueprint_set_general_settings() {
+	update_option( 'blogname',            'John Smith' );
+	update_option( 'blogdescription',     'An automated blueprint child theme' );
+	update_option( 'users_can_register',  0 );
+	update_option( 'default_role',        'subscriber' );
+	update_option( 'WPLANG',              'en_GB' );
+	update_option( 'site_language',       'en_GB' );
+	update_option( 'timezone_string',     'Europe/London' );
+}
+
+/**
+ * 2. MEDIA SETTINGS
+ */
+function blueprint_set_media_settings() {
+	update_option( 'thumbnail_size_w', 0 );
+	update_option( 'thumbnail_size_h', 0 );
+	update_option( 'thumbnail_crop',   0 );
+	update_option( 'medium_size_w',    0 );
+	update_option( 'medium_size_h',    0 );
+	update_option( 'large_size_w',     0 );
+	update_option( 'large_size_h',     0 );
+	update_option( 'uploads_use_yearmonth_folders', 0 );
+}
+
+/**
+ * 3. PERMALINK SETTINGS
+ */
+function blueprint_set_permalink_settings() {
+	update_option( 'permalink_structure', '/%postname%/' );
+	flush_rewrite_rules();
+}
+
+/**
+ * 4. USER PROFILE SETTINGS
+ */
+function blueprint_set_user_profile_settings( $user_id = 1 ) {
+	if ( ! $user_id ) {
+		return;
+	}
+
+	update_user_meta( $user_id, 'first_name',  'John' );
+	update_user_meta( $user_id, 'last_name',   'Smith' );
+	update_user_meta( $user_id, 'nickname',    'John' );
+	update_user_meta( $user_id, 'description', 'John is a technical web developer based in London UK specialising in WordPress. );
+
+	wp_update_user( [
+		'ID'           => $user_id,
+		'display_name' => 'John Smith',
+		'user_url'     => 'https://farhan.app',
+	] );
+}
+
+/**
+ * 5. REMOVE COMMENTS COMPLETELY
+ */
+function blueprint_remove_comments() {
+	foreach ( get_post_types() as $post_type ) {
+		if ( post_type_supports( $post_type, 'comments' ) ) {
+			remove_post_type_support( $post_type, 'comments' );
+			remove_post_type_support( $post_type, 'trackbacks' );
+		}
+	}
+
+	update_option( 'default_comment_status', 'closed' );
+	update_option( 'default_ping_status',    'closed' );
+
+	if ( ! get_option( 'blueprint_comments_removed' ) ) {
+		global $wpdb;
+		$wpdb->query( "UPDATE {$wpdb->posts} SET comment_status = 'closed', ping_status = 'closed'" );
+		$wpdb->query( "DELETE FROM {$wpdb->comments}" );
+		$wpdb->query( "DELETE FROM {$wpdb->commentmeta}" );
+		update_option( 'blueprint_comments_removed', 1 );
+	}
+}
+
+function blueprint_remove_comment_menus() {
+	remove_menu_page( 'edit-comments.php' );
+	remove_submenu_page( 'options-general.php', 'options-discussion.php' );
+}
+function blueprint_remove_comments_admin_bar( $wp_admin_bar ) {
+	$wp_admin_bar->remove_node( 'comments' );
+}
+function blueprint_redirect_comment_page() {
+	global $pagenow;
+	if ( $pagenow === 'edit-comments.php' ) {
+		wp_redirect( admin_url() );
+		exit;
+	}
+}
+
+/**
+ * 6. REMOVE DEFAULT DASHBOARD WIDGETS
+ */
+function blueprint_remove_dashboard_widgets() {
+	remove_meta_box( 'dashboard_right_now',      'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_recent_comments','dashboard', 'normal' );
+	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_plugins',        'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_quick_press',    'dashboard', 'side' );
+	remove_meta_box( 'dashboard_recent_drafts',  'dashboard', 'side' );
+	remove_meta_box( 'dashboard_primary',        'dashboard', 'side' );
+	remove_meta_box( 'dashboard_secondary',      'dashboard', 'side' );
+	remove_meta_box( 'dashboard_activity',       'dashboard', 'normal' );
+	remove_meta_box( 'dashboard_site_health',    'dashboard', 'normal' );
+	remove_action( 'welcome_panel', 'wp_welcome_panel' );
+}
+
+/**
+ * 7. RUN SETTINGS ONCE ON THEME ACTIVATION
+ */
+function blueprint_activate_settings() {
+	if ( get_option( 'blueprint_settings_applied' ) ) {
+		return;
+	}
+
+	blueprint_set_general_settings();
+	blueprint_set_media_settings();
+	blueprint_set_permalink_settings();
+	blueprint_set_user_profile_settings( 1 );
+	blueprint_remove_comments(); // DB purge once
+
+	update_option( 'blueprint_settings_applied', 1 );
+
+	if ( function_exists( 'wp_cache_flush' ) ) {
+		wp_cache_flush();
+	}
+}
+
+/**
+ * 8. HOOK EVERYTHING UP
+ */
+add_action( 'after_switch_theme', 'blueprint_activate_settings' );
+add_action( 'admin_init',         'blueprint_activate_settings' ); // safety net
+
+/* Comment disabling & UI cleanup */
+add_action( 'init',          'blueprint_remove_comments' );
+add_action( 'admin_menu',    'blueprint_remove_comment_menus' );
+add_action( 'admin_bar_menu','blueprint_remove_comments_admin_bar', 999 );
+add_action( 'admin_init',    'blueprint_redirect_comment_page' );
+add_filter( 'feed_links_show_comments_feed', '__return_false' );
+add_action( 'wp_enqueue_scripts', function () {
+	wp_deregister_script( 'comment-reply' );
+} );
+
+/* Dashboard declutter */
+add_action( 'wp_dashboard_setup', 'blueprint_remove_dashboard_widgets' );
