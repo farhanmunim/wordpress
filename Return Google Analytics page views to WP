@@ -1,0 +1,366 @@
+<?php
+/**
+ * Add this code to your child theme's functions.php file
+ * Google Analytics 4 (GA4) Page View Counter for Child Theme
+ */
+
+// Prevent direct access
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+class ChildTheme_GA4_PageViews {
+    private $access_token;
+    private $property_id;
+    
+    public function __construct() {
+        // Configuration - Add these to your wp-config.php
+        $this->property_id = defined('GA4_PROPERTY_ID') ? GA4_PROPERTY_ID : '';
+        
+        // Initialize hooks
+        add_action('init', array($this, 'init'));
+        add_shortcode('pageviews', array($this, 'pageviews_shortcode'));
+    }
+    
+    public function init() {
+        $this->access_token = $this->get_access_token();
+    }
+    
+    /**
+     * Get Google Analytics access token using refresh token
+     */
+    private function get_access_token() {
+        $refresh_token = defined('GA4_REFRESH_TOKEN') ? GA4_REFRESH_TOKEN : '';
+        $client_id = defined('GA4_CLIENT_ID') ? GA4_CLIENT_ID : '';
+        $client_secret = defined('GA4_CLIENT_SECRET') ? GA4_CLIENT_SECRET : '';
+        
+        if (empty($refresh_token) || empty($client_id) || empty($client_secret)) {
+            return false;
+        }
+        
+        // Check if we have a cached token
+        $cached_token = get_transient('ga4_access_token');
+        if ($cached_token) {
+            return $cached_token;
+        }
+        
+        // Get new access token using refresh token
+        $response = wp_remote_post('https://oauth2.googleapis.com/token', array(
+            'body' => array(
+                'client_id' => $client_id,
+                'client_secret' => $client_secret,
+                'refresh_token' => $refresh_token,
+                'grant_type' => 'refresh_token'
+            ),
+            'timeout' => 30
+        ));
+        
+        if (is_wp_error($response)) {
+            error_log('GA4 Token Error: ' . $response->get_error_message());
+            return false;
+        }
+        
+        $body = json_decode(wp_remote_retrieve_body($response), true);
+        
+        if (isset($body['access_token'])) {
+            // Cache for 50 minutes (tokens expire in 1 hour)
+            set_transient('ga4_access_token', $body['access_token'], 3000);
+            return $body['access_token'];
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Get page views from Google Analytics 4
+     */
+    public function get_page_views($page_path = '', $days = 'all') {
+        if (empty($this->access_token) || empty($this->property_id)) {
+            return 0;
+        }
+        
+        // Use current page if no path specified
+        if (empty($page_path)) {
+            $page_path = $_SERVER['REQUEST_URI'];
+            $page_path = strtok($page_path, '?'); // Remove query parameters
+        }
+        
+        // Check cache first
+        $cache_key = 'ga4_pageviews_' . md5($page_path . '_' . $days);
+        $cached_result = get_transient($cache_key);
+        
+        if ($cached_result !== false) {
+            return $cached_result;
+        }
+        
+        // Prepare date range for GA4
+        if ($days === 'all') {
+            $start_date = '2020-10-14'; // GA4 launch date
+        } else {
+            $start_date = date('Y-m-d', strtotime("-{$days} days"));
+        }
+        $end_date = date('Y-m-d');
+        
+        // GA4 Data API endpoint
+        $api_url = "https://analyticsdata.googleapis.com/v1beta/properties/{$this->property_id}:runReport";
+        
+        // GA4 API request body structure
+        $request_body = array(
+            'dateRanges' => array(
+                array(
+                    'startDate' => $start_date,
+                    'endDate' => $end_date
+                )
+            ),
+            'metrics' => array(
+                array('name' => 'screenPageViews') // GA4 metric name
+            ),
+            'dimensions' => array(
+                array('name' => 'pagePath')
+            ),
+            'dimensionFilter' => array(
+                'filter' => array(
+                    'fieldName' => 'pagePath',
+                    'stringFilter' => array(
+                        'matchType' => 'EXACT',
+                        'value' => $page_path
+                    )
+                )
+            )
+        );
+        
+        $response = wp_remote_post($api_url, array(
+            'headers' => array(
+                'Authorization' => 'Bearer ' . $this->access_token,
+                'Content-Type' => 'application/json'
+            ),
+            'body' => json_encode($request_body),
+            'timeout' => 30
+        ));
+        
+        if (is_wp_error($response)) {
+            error_log('GA4 API Error: ' . $response->get_error_message());
+            return 0;
+        }
+        
+        $body = json_decode(wp_remote_retrieve_body($response), true);
+        
+        $page_views = 0;
+        if (isset($body['rows'][0]['metricValues'][0]['value'])) {
+            $page_views = intval($body['rows'][0]['metricValues'][0]['value']);
+        }
+        
+        // Cache result for 1 hour
+        set_transient($cache_key, $page_views, 3600);
+        
+        return $page_views;
+    }
+    
+    /**
+     * Get total site page views (all pages combined)
+     */
+    public function get_total_site_views($days = 'all') {
+        if (empty($this->access_token) || empty($this->property_id)) {
+            return 0;
+        }
+        
+        // Check cache first
+        $cache_key = 'ga4_total_views_' . $days;
+        $cached_result = get_transient($cache_key);
+        
+        if ($cached_result !== false) {
+            return $cached_result;
+        }
+        
+        // Prepare date range
+        if ($days === 'all') {
+            $start_date = '2020-10-14'; // GA4 launch date
+        } else {
+            $start_date = date('Y-m-d', strtotime("-{$days} days"));
+        }
+        $end_date = date('Y-m-d');
+        
+        $api_url = "https://analyticsdata.googleapis.com/v1beta/properties/{$this->property_id}:runReport";
+        
+        $request_body = array(
+            'dateRanges' => array(
+                array(
+                    'startDate' => $start_date,
+                    'endDate' => $end_date
+                )
+            ),
+            'metrics' => array(
+                array('name' => 'screenPageViews')
+            )
+            // No dimensions = total for entire site
+        );
+        
+        $response = wp_remote_post($api_url, array(
+            'headers' => array(
+                'Authorization' => 'Bearer ' . $this->access_token,
+                'Content-Type' => 'application/json'
+            ),
+            'body' => json_encode($request_body),
+            'timeout' => 30
+        ));
+        
+        if (is_wp_error($response)) {
+            error_log('GA4 Total Views API Error: ' . $response->get_error_message());
+            return 0;
+        }
+        
+        $body = json_decode(wp_remote_retrieve_body($response), true);
+        
+        $total_views = 0;
+        if (isset($body['rows'][0]['metricValues'][0]['value'])) {
+            $total_views = intval($body['rows'][0]['metricValues'][0]['value']);
+        }
+        
+        // Cache result for 1 hour
+        set_transient($cache_key, $total_views, 3600);
+        
+        return $total_views;
+    }
+    
+    /**
+     * Shortcode for displaying page views
+     * Usage: [pageviews] or [pageviews path="/about" days="30"] or [pageviews type="total"]
+     */
+    public function pageviews_shortcode($atts) {
+        $atts = shortcode_atts(array(
+            'path' => '',
+            'days' => 'all',
+            'type' => 'page', // 'page' or 'total' (entire site)
+            'format' => true
+        ), $atts);
+        
+        $days = ($atts['days'] === 'all') ? 'all' : intval($atts['days']);
+        
+        if ($atts['type'] === 'total') {
+            $count = $this->get_total_site_views($days);
+        } else {
+            $count = $this->get_page_views($atts['path'], $days);
+        }
+        
+        if ($atts['format']) {
+            return number_format($count);
+        }
+        
+        return $count;
+    }
+}
+
+// Initialize the class
+$GLOBALS['child_theme_ga4'] = new ChildTheme_GA4_PageViews();
+
+/**
+ * MAIN FUNCTION FOR TEMPLATES
+ * Usage: <?php echo page_view_count(); ?> - Gets TOTAL views for current page
+ * Usage: <?php echo page_view_count('', 30); ?> - Gets last 30 days
+ */
+function page_view_count($page_path = '', $days = 'all', $format = true) {
+    global $child_theme_ga4;
+    
+    $count = $child_theme_ga4->get_page_views($page_path, $days);
+    
+    if ($format) {
+        return number_format($count);
+    }
+    
+    return $count;
+}
+
+/**
+ * TOTAL SITE VIEWS FUNCTION
+ * Usage: <?php echo total_site_views(); ?> - Gets total views for entire website
+ */
+function total_site_views($days = 'all', $format = true) {
+    global $child_theme_ga4;
+    
+    $count = $child_theme_ga4->get_total_site_views($days);
+    
+    if ($format) {
+        return number_format($count);
+    }
+    
+    return $count;
+}
+
+/**
+ * ECHO VERSION (as you requested)
+ * Usage: <?php echo_page_view_count(); ?> - Gets TOTAL views for current page
+ */
+function echo_page_view_count($page_path = '', $days = 'all') {
+    echo page_view_count($page_path, $days, true);
+}
+
+/**
+ * ALTERNATIVE SIMPLE FUNCTION NAME
+ * Usage: <?php echo pageviews(); ?> - Gets TOTAL views for current page
+ */
+function pageviews($page_path = '', $days = 'all') {
+    return page_view_count($page_path, $days, true);
+}
+
+/**
+ * ===========================================
+ * SETUP INSTRUCTIONS FOR GA4:
+ * ===========================================
+ * 
+ * 1. COPY THIS CODE:
+ *    - Copy everything above this comment block
+ *    - Paste it at the END of your child theme's functions.php file
+ * 
+ * 2. ADD TO WP-CONFIG.PHP (Note: GA4_ prefix now):
+ *    Add these lines to your wp-config.php file:
+ * 
+ *    // Google Analytics 4 Configuration
+ *    define('GA4_PROPERTY_ID', 'your-ga4-property-id-here');
+ *    define('GA4_CLIENT_ID', 'your-oauth-client-id-here');
+ *    define('GA4_CLIENT_SECRET', 'your-oauth-client-secret-here');
+ *    define('GA4_REFRESH_TOKEN', 'your-refresh-token-here');
+ * 
+ * 3. GET GA4 PROPERTY ID:
+ *    - Go to Google Analytics 4
+ *    - Admin → Property Settings
+ *    - Copy "Property ID" (looks like: 123456789)
+ * 
+ * 4. GET GOOGLE CREDENTIALS (Same process as before):
+ *    a) Go to: https://console.cloud.google.com/
+ *    b) Enable "Google Analytics Data API" (NOT Reporting API)
+ *    c) Create OAuth 2.0 credentials
+ *    d) Use OAuth Playground with scope: https://www.googleapis.com/auth/analytics.readonly
+ * 
+ * 5. USAGE EXAMPLES:
+ * 
+ *    Current page total views:
+ *    <?php echo page_view_count(); ?>
+ * 
+ *    Current page last 30 days:
+ *    <?php echo page_view_count('', 30); ?>
+ * 
+ *    Specific page total views:
+ *    <?php echo page_view_count('/about'); ?>
+ * 
+ *    Total website views:
+ *    <?php echo total_site_views(); ?>
+ * 
+ *    Shortcodes:
+ *    [pageviews] - Current page total
+ *    [pageviews days="30"] - Current page last 30 days
+ *    [pageviews path="/contact"] - Contact page total
+ *    [pageviews type="total"] - Total site views
+ * 
+ * 6. KEY DIFFERENCES FROM OLD VERSION:
+ *    - Uses GA4_* constants instead of GA_*
+ *    - Uses Google Analytics Data API v1 (not Reporting API v4)
+ *    - Property ID instead of View ID
+ *    - screenPageViews metric instead of pageviews
+ *    - Added total_site_views() function
+ * 
+ * 7. IMPORTANT NOTES:
+ *    - GA4 data starts from when you switched to GA4
+ *    - If you still have Universal Analytics data, you'd need both APIs
+ *    - GA4 has different metric names and structure
+ */
+?>
